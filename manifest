@@ -2,7 +2,7 @@
 #Thu Sep 22 15:41:19 EDT 2016
 =
 JVMLevel=
-LSID=urn\:lsid\:8080.gpbroad.broadinstitute.org\:genepatternmodules\:345\:1.3
+LSID=urn\:lsid\:8080.gpbroad.broadinstitute.org\:genepatternmodules\:345\:1.4.1
 author=Felix Wu;Broad Institute
 commandLine=<R3.0_Rscript> <libdir>run_ConstellationMap.R <libdir> <user.dir> <patches> <java> --input.gct.file\=<input.gct.file> --input.cls.file\=<input.cls.file> --gene.sets.database\=<gene.sets.database> <gene.sets.file> --top.n\=<top.n> --direction\=<direction> --image.format\=<image.format> --jaccard.threshold\=<jaccard.threshold> <target.class>
 cpuType=any
@@ -97,4 +97,4 @@ quality=production
 taskDoc=doc.html
 taskType=Statistical Methods
 userid=flwu
-version=added 'gdata_2.13.2' to r.library.txt file, for rhel6 env on gpprod
+version=Adjusted 'r.package.info' file from GPARC v1.2 readme
