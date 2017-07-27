@@ -728,35 +728,6 @@ MI.rank <- function(
   
 } # End MI.rank
 
-# Function to calculate the normalized mutual information from pablo's code FS.library.v1.R
-assoc.metric <- function(target, feature, type="NMI", knn=3, n.grid=50) {
-  if (type=="NMI") { # Normalized mutual information (Kernel method)
-    feature <- feature + 0.00001*runif(length(feature))
-    return(mutual.inf.P(x = target, y = feature, n.grid=n.grid)$NMI)
-  } else if (type=="RNMI") { # Rescaled normalized mutual information (Kernel method)
-    feature <- feature + 0.0001*runif(length(feature))
-    return(mutual.inf.P(x = target, y = feature, n.grid=n.grid)$NMI/mutual.inf.P(x = target, y = target, n.grid=n.grid)$NMI)
-  } else if (type=="DIFF.MEANS") {
-    x <- split(feature, target)
-    m1 <- mean(x[[1]])
-    m2 <- mean(x[[2]])
-    return(m1 - m2)
-  } else if (type=="S2N") {
-    x <- split(feature, target)
-    m1 <- mean(x[[1]])
-    m2 <- mean(x[[2]])
-    s1 <- ifelse(length(x[[1]]) > 1, sd(x[[1]]), 0)
-    s2 <- ifelse(length(x[[2]]) > 1, sd(x[[2]]), 0)
-    s1 <- ifelse(s1 < 0.1*abs(m1), 0.1*abs(m1), s1)
-    s2 <- ifelse(s2 < 0.1*abs(m2), 0.1*abs(m2), s2)
-    return((m1 - m2)/(s1 + s2 + 0.1))
-  } else if (type=="CORR") {           
-    return(cor(target, feature))
-  } else {
-    stop(paste("Unknow assoc. metric name:", type))
-  }
-} # End assoc.metric
-
 # function to generate constellation map
 constellation.map <- function( expr, class.v, gs, GSDB, jaccard.threshold, direction, target.class) {
   # expr is the enrichment matrix where samples are in columns
@@ -768,7 +739,9 @@ constellation.map <- function( expr, class.v, gs, GSDB, jaccard.threshold, direc
   df <- as.matrix( rbind( class.v, expr[ row.ind, ] ) )
   rownames( df )[ 1 ] <- "Phenotype"
   n.fea <- dim(df)[1]
-  dist.matrix <- NMI.dist.mat(df)
+  NMI.dist.list <- NMI.dist.mat(df)
+  dist.matrix <- NMI.dist.list$dist.matrix
+  phen.NMI <- NMI.dist.list$phen.NMI
 
   # Normalize the distance matrix to 0 - 1
   dist.matrix <- (dist.matrix - min(dist.matrix)) / (max(dist.matrix) - min(dist.matrix))
@@ -807,27 +780,50 @@ constellation.map <- function( expr, class.v, gs, GSDB, jaccard.threshold, direc
   size.G <- gs.size(GSDB, gs)
   jcoef <- jaccard.coef(GSDB, gs)
   
-  edgepairs <- constellation.plot(x, y, radius, angles, jcoef, jaccard.threshold, target.class)
+  const.plot.list <- constellation.plot(x, y, radius, phen.NMI, angles, jcoef, jaccard.threshold, target.class)
+  edgepairs <- const.plot.list$edgepairs
+  NMI.annot.df <- const.plot.list$NMI.annot.df
   
-  return(list(x=x, y=y, radius=radius, angles=angles, connectivity=jcoef, edgepairs=edgepairs))
+  return(list(x=x, y=y, radius=radius, angles=angles, connectivity=jcoef, edgepairs=edgepairs, NMI.annot.df=NMI.annot.df, phen.NMI=phen.NMI))
 } # End constellation.map
 
-constellation.plot <- function(x, y, radius, angles, connectivity.mat, jaccard.threshold, target.class){
+constellation.plot <- function(x, y, radius, phen.NMI, angles, connectivity.mat, jaccard.threshold, target.class){
   
   # Plot the outline of the constellation plot
   plot(x, y, pch=20, bty="n", xaxt='n', axes = FALSE, type="n", xlab="", ylab="",
        xlim=1.5*c(-max(radius), max(radius)), ylim=1.5*c(-max(radius), max(radius)))
   
-  # Plot the outline of the radio plot
+  # Plot the outline of the radial plot
+  radial.col <- "gray80"
   line.angle <- seq(0, 2*pi-0.001, 0.001)
-  for (i in 1:length(x)) {
-    line.max.x <- radius[i] * cos(line.angle)
-    line.max.y <- radius[i] * sin(line.angle)
-    points(line.max.x, line.max.y, type="l", col="gray80", lwd=1)
-  }
-  line.max.x <- 1.2*max(radius) * cos(line.angle)
-  line.max.y <- 1.2*max(radius) * sin(line.angle)
   
+  # Plot circles with annotations
+  phen.NMI <- phen.NMI[which(!grepl("Phenotype", row.names(phen.NMI))), 'Phenotype'] #Remove 'Phenotype' from phen.NMI
+  radius.unq <- unique(radius)
+  tmp.ln <- length(radius.unq)
+  NMI.annot <- rep(0, tmp.ln)
+  max.rings <- 5 # Plot only up to max.rings
+  if(tmp.ln <= max.rings) {
+    indx.to.print <- 1:max.rings
+  } else { # If more radii than max.rings, then choose rings to plot
+    indx.to.print <- c(1, tmp.ln)
+    tmp.int <- floor((tmp.ln-2)/(max.rings-2) * 1:(max.rings-2)) + 1
+    indx.to.print <- c(indx.to.print, tmp.int)
+  }
+  prev.NMI <- -999
+  for(i in 1:tmp.ln) {
+    cur.NMI.range <- as.numeric(phen.NMI[radius %in% radius.unq[i]])
+    NMI.annot[i] <- signif(mean(cur.NMI.range), 2)
+    if((i %in% indx.to.print) && (NMI.annot[i] != prev.NMI)) {
+      line.max.x <- radius.unq[i] * cos(line.angle)
+      line.max.y <- radius.unq[i] * sin(line.angle)
+      points(line.max.x, line.max.y, type="l", col=radial.col, lwd=1)
+      text(0, radius.unq[i], NMI.annot[i], cex=0.5, col=radial.col, pos=3, offset=0.1)
+      prev.NMI <- NMI.annot[i]
+    }
+  }
+  NMI.annot.df <- data.frame('radius'=radius.unq, 'NMI.annot'=NMI.annot, 'in.plot'=(1:tmp.ln %in% indx.to.print))
+
   # Plot the features
   points(x, y, pch=1, col="darkblue", cex=2)
   
@@ -836,7 +832,7 @@ constellation.plot <- function(x, y, radius, angles, connectivity.mat, jaccard.t
   text(0, 0, labels = target.class, cex = 1, col = "red", pos = 1)
   
   n.fea <- length(x)
-  textxy(x, y, paste(1:(n.fea - 1)), cx = 1)	
+  textxy(x, y, paste(1:n.fea), cex = 0.65, offset=0)
   
   # Plot the connectivity lines
   edgepairs <- matrix(nrow=length(x)*(length(x)-1)/2, ncol=2, NA)
@@ -862,7 +858,7 @@ constellation.plot <- function(x, y, radius, angles, connectivity.mat, jaccard.t
     if(!is.matrix(edgepairs)) {edgepairs <- t(as.matrix(edgepairs))}
   }
   
-  return(edgepairs)
+  return(list('edgepairs'=edgepairs, 'NMI.annot.df'=NMI.annot.df))
 } # End constellation.plot
 
 # Calculate the pairwise mutual information of a data matrix, each row is one feature here
@@ -875,7 +871,7 @@ NMI.dist.mat <- function(df){
   NMI.matrix <- matrix( 0, nrow = n.fea, ncol = n.fea )
   
   # mutual information transformed distance matrix
-  dist.matrix <- matrix(0, nrow = n.fea, ncol = n.fea)
+  dist.matrix <- matrix(1, nrow = n.fea, ncol = n.fea)
   
   row.names( NMI.matrix ) <- selected.features
   colnames( NMI.matrix ) <- selected.features
@@ -889,16 +885,21 @@ NMI.dist.mat <- function(df){
     for ( j in 1:n.fea ){
       x <- df[ selected.features[ i ], ]
       y <- df[ selected.features[ j ], ]
-      rho <- abs(cor(x, y))
       
       # To be consistent with ssGSEA
-      NMI <- assoc.metric(target = x, feature = y, type = "NMI")
-      NMI.matrix[i ,j] <- signif(NMI, 2)
-      dist.matrix[i, j] <- 1 - NMI.matrix[i, j]
+      #NMI.matrix[i,j] <- signif(mutual.inf.P(x, y, n.grid=100)$NMI, 2)
+      NMI.matrix[i,j] <- mutual.inf.P(x, y, n.grid=100)$NMI
+      #dist.matrix[i, j] <- 1 - NMI.matrix[i, j]
     }
   }
   
-  return( dist.matrix )
+  phen.NMI <- data.frame('Phenotype' = signif(NMI.matrix[,'Phenotype']/NMI.matrix['Phenotype','Phenotype'], 4))
+  row.names(phen.NMI) <- selected.features
+  
+  NMI.matrix <- signif(NMI.matrix, 3)
+  dist.matrix <- dist.matrix - NMI.matrix
+  
+  return(list('dist.matrix'=dist.matrix, 'phen.NMI'=phen.NMI))
 } # End NMI.dist.mat
 
 # This function will calculate the size of the gene set and normalize it to the range of 0.1 - 0.6
