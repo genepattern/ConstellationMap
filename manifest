@@ -1,5 +1,5 @@
 #ConstellationMap
-#Thu Jul 27 15:39:59 EDT 2017
+#Thu Apr 09 15:48:22 EDT 2015
 JVMLevel=
 LSID=urn\:lsid\:8080.gpbroad.broadinstitute.org\:genepatternmodules\:345\:1.1
 author=Felix Wu;Broad Institute
@@ -97,3 +97,35 @@ taskDoc=doc.html
 taskType=Statistical Methods
 userid=flwu
 version=Initial production release.
+
+=requiredPatchLSIDs=\
+    urn\:lsid\:broadinstitute.org\:plugin\:Ant_1.8\:1,\
+=    urn\:lsid\:broadinstitute.org\:rlib.3.0\:CvM2SL2Test_2.0-1\:3,\
+=    urn\:lsid\:broadinstitute.org\:rlib.3.0\:MASS_7.3-33\:2,\
+=    urn\:lsid\:broadinstitute.org\:rlib.3.0\:calibrate_1.7.2\:1,\
+=    urn\:lsid\:broadinstitute.org\:rlib.3.0\:getopt_1.20.0\:1,\
+=    urn\:lsid\:broadinstitute.org\:rlib.3.0\:gmodels_2.15.4.1\:1,\
+=    urn\:lsid\:broadinstitute.org\:rlib.3.0\:gtools_3.4.1\:2,\
+=    urn\:lsid\:broadinstitute.org\:rlib.3.0\:maptools_0.8-30\:2,\
+=    urn\:lsid\:broadinstitute.org\:rlib.3.0\:optparse_1.2.0\:1,\
+=    urn\:lsid\:broadinstitute.org\:rlib.3.0\:parmigene_1.0.2\:2,\
+=    urn\:lsid\:broadinstitute.org\:rlib.3.0\:plotrix_3.5-7\:2,\
+=    urn\:lsid\:broadinstitute.org\:rlib.3.0\:rgl_0.93.996\:1
+=    urn\:lsid\:broadinstitute.org\:rlib.3.0\:smacof_1.5-0\:2,\
+=    urn\:lsid\:broadinstitute.org\:rlib.3.0\:verification_1.40\:2
+=requiredPatchURLs=\
+    http\://www.broadinstitute.org/webservices/gpModuleRepository/download/prod/patch/?file\=/Ant_1_8/broadinstitute.org\:plugin/Ant_1.8/1/Ant_1_8.zip,\
+=    http\://www.broadinstitute.org/webservices/gpModuleRepository/download/prod/patch/?file\=/rlib.3.0_CvM2SL2Test_2.0-1/broadinstitute.org\:rlib.3.0/CvM2SL2Test_2.0-1/3/rlib.3.0_CvM2SL2Test_2.0-1.zip,\
+=    http\://www.broadinstitute.org/webservices/gpModuleRepository/download/prod/patch/?file\=/rlib.3.0_MASS_7.3-33/broadinstitute.org\:rlib.3.0/MASS_7.3-33/2/rlib.3.0_MASS_7.3-33.zip,\
+=    http\://www.broadinstitute.org/webservices/gpModuleRepository/download/prod/patch/?file\=/rlib.3.0_calibrate_1.7.2/broadinstitute.org\:rlib.3.0/calibrate_1.7.2/1/rlib.3.0_calibrate_1.7.2.zip,\
+=    http\://www.broadinstitute.org/webservices/gpModuleRepository/download/prod/patch/?file\=/rlib.3.0_gmodels_2.15.4.1/broadinstitute.org\:rlib.3.0/gmodels_2.15.4.1/1/rlib.3.0_gmodels_2.15.4.1.zip,\
+=    http\://www.broadinstitute.org/webservices/gpModuleRepository/download/prod/patch/?file\=/rlib.3.0_gtools_3.4.1/broadinstitute.org\:rlib.3.0/gtools_3.4.1/2/rlib.3.0_gtools_3.4.1.zip,\
+=    http\://www.broadinstitute.org/webservices/gpModuleRepository/download/prod/patch/?file\=/rlib.3.0_maptools_0.8-30/broadinstitute.org\:rlib.3.0/maptools_0.8-30/2/rlib.3.0_maptools_0.8-30.zip,\
+=    http\://www.broadinstitute.org/webservices/gpModuleRepository/download/prod/patch/?file\=/rlib.3.0_optparse_1.2.0/broadinstitute.org\:rlib.3.0/optparse_1.2.0/1/rlib.3.0_optparse_1.2.0.zip,\
+=    http\://www.broadinstitute.org/webservices/gpModuleRepository/download/prod/patch/?file\=/rlib.3.0_parmigene_1.0.2/broadinstitute.org\:rlib.3.0/parmigene_1.0.2/2/rlib.3.0_parmigene_1.0.2.zip,\
+=    http\://www.broadinstitute.org/webservices/gpModuleRepository/download/prod/patch/?file\=/rlib.3.0_plotrix_3.5-7/broadinstitute.org\:rlib.3.0/plotrix_3.5-7/2/rlib.3.0_plotrix_3.5-7.zip,\
+=    http\://www.broadinstitute.org/webservices/gpModuleRepository/download/prod/patch/?file\=/rlib.3.0_rgl_0.93.996/broadinstitute.org\:rlib.3.0/rgl_0.93.996/1/rlib.3.0_rgl_0.93.996.zip,\
+=    http\://www.broadinstitute.org/webservices/gpModuleRepository/download/prod/patch/?file\=/rlib.3.0_smacof_1.5-0/broadinstitute.org\:rlib.3.0/smacof_1.5-0/2/rlib.3.0_smacof_1.5-0.zip,\
+=    http\://www.broadinstitute.org/webservices/gpModuleRepository/download/prod/patch/?file\=/rlib.3.0_verification_1.40/broadinstitute.org\:rlib.3.0/verification_1.40/2/rlib.3.0_verification_1.40.zip,\
+=    http\://www.broadinstitute.org/webservices/gpModuleRepository/download/prod/patch/?file\=/rlib.3.0_getopt_1.20.0/broadinstitute.org\:rlib.3.0/getopt_1.20.0/1/rlib.3.0_getopt_1.20.0.zip
+=
