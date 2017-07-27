@@ -1,7 +1,15 @@
 #
 # Required R Packages for the ConstellationMap module
-# created as a copy of the 'r.libraries.txt' from from v1.2 of the module
 #
+# hand-crafted on private Broad hosted server (gpbroad) 
+#   arch:    uger/rhel6
+#   dotkits: '.gcc-4.5.3, .r-3.0.3-vanilla'
+#   custom environment variable must be set when installing the 'Rcpp' package
+#     export R_JAVA_LD_LIBRARY_PATH=${LD_LIBRARY_PATH}
+#
+# see: https://stackoverflow.com/questions/25721884/how-should-i-deal-with-package-xxx-is-not-available-for-r-version-x-y-z-wa
+#
+
 package,requested_version,archive_name,src_URL,Mac_URL,Windows_URL
 
 #
@@ -10,30 +18,51 @@ package,requested_version,archive_name,src_URL,Mac_URL,Windows_URL
 # Download the following source archives to some local directory (e.g., ~/Downloads). 
 # From an R-3.0.3 session install the packages with the following command:
 #     install.packages("/path/to/archive.tar.gz", lib="$GP_HOME/patches/rlib/3.0/site-library", repos=NULL, type="source")
+#
 
-CvM2SL2Test, 2.0-1, CRAN, https://cran.r-project.org/src/contrib/Archive/CvM2SL2Test/CvM2SL2Test_2.0-1.tar.gz
-MASS, 7.3-33, CRAN, https://cran.r-project.org/src/contrib/Archive/MASS/MASS_7.3-33.tar.gz
-calibrate, 1.7.2, CRAN, https://cran.r-project.org/src/contrib/calibrate_1.7.2.tar.gz
-getopt, 1.20.0, CRAN, https://cran.r-project.org/src/contrib/getopt_1.20.0.tar.gz
-gmodels, 2.15.4.1, CRAN, https://cran.r-project.org/src/contrib/Archive/gmodels/gmodels_2.15.4.1.tar.gz
-gtools, 3.4.1, CRAN, https://cran.r-project.org/src/contrib/Archive/gtools/gtools_3.4.1.tar.gz
-sp, 1.0-17, CRAN, https://cran.r-project.org/src/contrib/Archive/sp/sp_1.0-17.tar.gz
-maptools, 0.8-30, CRAN, https://cran.r-project.org/src/contrib/Archive/maptools/maptools_0.8-30.tar.gz 
-optparse, 1.2.0, CRAN, https://cran.r-project.org/src/contrib/Archive/optparse/optparse_1.2.0.tar.gz 
-parmigene, 1.0.2, CRAN, https://cran.r-project.org/src/contrib/parmigene_1.0.2.tar.gz
-plotrix, 3.5-7, CRAN, https://cran.r-project.org/src/contrib/Archive/plotrix/plotrix_3.5-7.tar.gz
-plyr, 0.1.8, CRAN, https://cran.r-project.org/src/contrib/Archive/plyr/plyr_0.1.8.tar.gz
-reshape2, 1.2.2, CRAN
-scales, 0.2.3, CRAN
-ggplot2, 1.0.0, CRAN, https://cran.r-project.org/src/contrib/Archive/ggplot2/ggplot2_1.0.0.tar.gz
-Hmisc, 3.12-2, CRAN, https://cran.r-project.org/src/contrib/Archive/Hmisc/Hmisc_3.12-2.tar.gz
-#rgl, 0.93.996, CRAN, https://cran.r-project.org/src/contrib/Archive/rgl/rgl_0.93.996.tar.gz
-smacof, 1.5-0, CRAN, https://cran.r-project.org/src/contrib/Archive/smacof/smacof_1.5-0.tar.gz
-proxy, 0.4-16, CRAN
-dtw, 1.17-1, CRAN, https://cran.r-project.org/src/contrib/Archive/dtw/dtw_1.17-1.tar.gz
-verification, 1.40, CRAN, https://cran.r-project.org/src/contrib/Archive/verification/verification_1.40.tar.gz
-fields, 8.2-1, CRAN, https://cran.r-project.org/src/contrib/Archive/fields/fields_8.2-1.tar.gz
-boot, 1.3-16, CRAN, https://cran.r-project.org/src/contrib/Archive/boot/boot_1.3-16.tar.gz
-CircStats, 0.2-4, CRAN, https://cran.r-project.org/src/contrib/CircStats_0.2-4.tar.gz
-
-
+CvM2SL2Test,   2.0-1,    CRAN, https://cran.r-project.org/src/contrib/Archive/CvM2SL2Test/CvM2SL2Test_2.0-1.tar.gz
+MASS,          7.3-33,   CRAN, https://cran.r-project.org/src/contrib/Archive/MASS/MASS_7.3-33.tar.gz
+calibrate,     1.7.2,    CRAN, https://cran.r-project.org/src/contrib/calibrate_1.7.2.tar.gz
+getopt,        1.20.0,   CRAN, https://cran.r-project.org/src/contrib/getopt_1.20.0.tar.gz
+gtools,        3.4.1,    CRAN, https://cran.r-project.org/src/contrib/Archive/gtools/gtools_3.4.1.tar.gz
+gdata,         2.17.0,   CRAN, https://cran.r-project.org/src/contrib/Archive/gdata/gdata_2.17.0.tar.gz
+gmodels,       2.15.4.1, CRAN, https://cran.r-project.org/src/contrib/Archive/gmodels/gmodels_2.15.4.1.tar.gz
+sp,            1.0-17,   CRAN, https://cran.r-project.org/src/contrib/Archive/sp/sp_1.0-17.tar.gz
+maptools,      0.8-30,   CRAN, https://cran.r-project.org/src/contrib/Archive/maptools/maptools_0.8-30.tar.gz 
+optparse,      1.2.0,    CRAN, https://cran.r-project.org/src/contrib/Archive/optparse/optparse_1.2.0.tar.gz 
+parmigene,     1.0.2,    CRAN, https://cran.r-project.org/src/contrib/parmigene_1.0.2.tar.gz
+plotrix,       3.5-7,    CRAN, https://cran.r-project.org/src/contrib/Archive/plotrix/plotrix_3.5-7.tar.gz
+Rcpp,          0.12.12,  CRAN, https://cran.r-project.org/src/contrib/Rcpp_0.12.12.tar.gz
+plyr,          1.8.1,    CRAN, https://cran.r-project.org/src/contrib/Archive/plyr/plyr_1.8.1.tar.gz
+stringi,       1.1.5,    CRAN, https://cran.fhcrc.org/src/contrib/stringi_1.1.5.tar.gz
+magrittr,      1.5,      CRAN, https://cran.fhcrc.org/src/contrib/magrittr_1.5.tar.gz
+stringr,       1.2.0,    CRAN, https://cran.fhcrc.org/src/contrib/stringr_1.2.0.tar.gz
+reshape2,      1.2.2,    CRAN
+RColorBrewer,  1.1-2,    CRAN
+dichromat,     2.0-0,    CRAN, https://cran.r-project.org/src/contrib/dichromat_2.0-0.tar.gz
+colorspace,    1.3-2,    CRAN, https://cran.r-project.org/src/contrib/colorspace_1.3-2.tar.gz
+munsell,       0.4.3,    CRAN, https://cran.r-project.org/src/contrib/munsell_0.4.3.tar.gz
+labeling,      0.3,      CRAN, https://cran.r-project.org/src/contrib/labeling_0.3.tar.gz
+scales,        0.2.3,    CRAN, https://cran.r-project.org/src/contrib/Archive/scales/scales_0.2.3.tar.gz
+digest,        0.6.12,   CRAN, https://cran.r-project.org/src/contrib/digest_0.6.12.tar.gz
+gtable,        0.2.0,    CRAN, https://cran.r-project.org/src/contrib/gtable_0.2.0.tar.gz
+proto,         1.0.0,    CRAN, https://cran.r-project.org/src/contrib/proto_1.0.0.tar.gz
+ggplot2,       1.0.0,    CRAN, https://cran.r-project.org/src/contrib/Archive/ggplot2/ggplot2_1.0.0.tar.gz
+Formula,       1.2-2,    CRAN, https://cran.r-project.org/src/contrib/Formula_1.2-2.tar.gz
+Hmisc,         3.12-2,   CRAN, https://cran.r-project.org/src/contrib/Archive/Hmisc/Hmisc_3.12-2.tar.gz
+polynom,       1.3-8,    CRAN
+scatterplot3d, 0.3-35,   CRAN
+nnls,          1.4,      CRAN, https://cran.r-project.org/src/contrib/nnls_1.4.tar.gz
+# ERROR: configuration failed for package 'rgl'
+#   see: https://cran.r-project.org/package=rgl
+rgl,           0.93.996, CRAN, https://cran.r-project.org/src/contrib/Archive/rgl/rgl_0.93.996.tar.gz
+# ERROR: dependency 'rgl' is not available for package 'smacof'
+smacof,        1.5-0,    CRAN, https://cran.r-project.org/src/contrib/Archive/smacof/smacof_1.5-0.tar.gz
+proxy,         0.4-16,   CRAN
+dtw,           1.17-1,   CRAN, https://cran.r-project.org/src/contrib/Archive/dtw/dtw_1.17-1.tar.gz
+spam,          1.4-0,    CRAN
+maps,          3.1.1,    CRAN
+fields,        8.2-1,    CRAN, https://cran.r-project.org/src/contrib/Archive/fields/fields_8.2-1.tar.gz
+CircStats,     0.2-4,    CRAN, https://cran.r-project.org/src/contrib/CircStats_0.2-4.tar.gz
+verification,  1.40,     CRAN, https://cran.r-project.org/src/contrib/Archive/verification/verification_1.40.tar.gz
+boot,          1.3-16,   CRAN, https://cran.r-project.org/src/contrib/Archive/boot/boot_1.3-16.tar.gz
