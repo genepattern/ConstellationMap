@@ -1,0 +1,15 @@
+#
+# GpUnit test-case for ConstellationMap
+#   variation: "PDF" image format
+
+module: "urn:lsid:8080.gpbroad.broadinstitute.org:genepatternmodules:345:1.4.5"
+params:
+    # https://gpbroad.broadinstitute.org/gp/jobResults/158921/Diabetes_collapsed_symbols.PROJ.gct
+    input.gct.file: "Diabetes_collapsed_symbols.PROJ.gct"
+    input.cls.file: "Diabetes.cls"
+    # h.all.v6.1.symbols.gmt [Hallmarks]
+    gene.sets.file: "ftp://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/h.all.v6.1.symbols.gmt"
+    top.n: "10"
+    direction: "positive"
+    image.format: "PDF"
+    jaccard.threshold: "0.1"

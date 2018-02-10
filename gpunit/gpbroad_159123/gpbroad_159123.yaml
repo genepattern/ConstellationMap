@@ -1,0 +1,44 @@
+#
+# GpUnit test-case for ConstellationMap, based on job completed on gpbroad server
+#
+#   gp_execution_log.txt content
+#
+# Created: Sun Feb 04 00:08:07 EST 2018 by eby
+# Job: 159123    server:  https://gpbroad.broadinstitute.org/gp/
+# Module: ConstellationMap urn:lsid:8080.gpbroad.broadinstitute.org:genepatternmodules:345:999999999
+# Parameters: 
+#    input.gct.file = Diabetes_collapsed_symbols.PROJ.gct   https://gpbroad.broadinstitute.org/gp/jobResults/158921/Diabetes_collapsed_symbols.PROJ.gct
+#    input.cls.file = Diabetes.cls   https://gpbroad.broadinstitute.org/gp/users/eby/tmp/run1869603784104291954.tmp/input.cls.file/1/Diabetes.cls
+#    gene.sets.file = h.all.v6.1.symbols.gmt [Hallmarks]   ftp://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/h.all.v6.1.symbols.gmt
+#    top.n = 10
+#    direction = positive
+#    image.format = PNG
+#    jaccard.threshold = 0.1
+#    target.class = 
+
+module: "urn:lsid:8080.gpbroad.broadinstitute.org:genepatternmodules:345:1.4.5"
+params:
+    # https://gpbroad.broadinstitute.org/gp/jobResults/158921/Diabetes_collapsed_symbols.PROJ.gct
+    input.gct.file: "Diabetes_collapsed_symbols.PROJ.gct"
+    input.cls.file: "Diabetes.cls"
+    # h.all.v6.1.symbols.gmt [Hallmarks]
+    gene.sets.file: "ftp://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/h.all.v6.1.symbols.gmt"
+    top.n: "10"
+    direction: "positive"
+    image.format: "PNG"
+    jaccard.threshold: "0.1"
+
+assertions: 
+    # outputDir: "expected/159123"
+    numFiles: 7
+    files: !!map
+        "ConstellationMap.plot.data.edges.odf":
+            diff: "expected/159123/ConstellationMap.plot.data.edges.odf"
+        #"ConstellationMap.plot.data.nodes.odf":
+        #    diff: "expected/159123/ConstellationMap.plot.data.nodes.odf"
+        "Diabetes_collapsed_symbols.PROJ.h.all.v6.1.symbols.NGT.CONSTELLATION_MAP.png": !!null
+        "Diabetes_collapsed_symbols.PROJ.h.all.v6.1.symbols.NGT.HEATMAP.png": !!null
+        "Diabetes_collapsed_symbols.PROJ.h.all.v6.1.symbols.NGT.REPORT.txt": 
+            diff: "expected/159123/Diabetes_collapsed_symbols.PROJ.h.all.v6.1.symbols.NGT.REPORT.txt"
+        "Visualizer.html": !!null
+        "stdout.txt": !!null
