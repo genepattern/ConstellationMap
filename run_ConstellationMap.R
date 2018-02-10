@@ -2,7 +2,7 @@
 # SOFTWARE COPYRIGHT NOTICE AGREEMENT
 # The MIT License (MIT)
 
-# Copyright (c) 2015 The Broad Institute of Harvard and MIT
+# Copyright (c) 2015-2018 The Broad Institute of Harvard and MIT
 #   
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -36,22 +36,17 @@ suppressMessages(suppressWarnings(library(sp)))
 suppressMessages(suppressWarnings(library(maptools)))
 suppressMessages(suppressWarnings(library(parmigene)))
 suppressMessages(suppressWarnings(library(plotrix)))
-#suppressMessages(suppressWarnings(library(Rcpp)))
-#suppressMessages(suppressWarnings(library(plyr)))
 suppressMessages(suppressWarnings(library(stringi)))
 suppressMessages(suppressWarnings(library(magrittr)))
 suppressMessages(suppressWarnings(library(stringr)))
-#suppressMessages(suppressWarnings(library(reshape2)))
 suppressMessages(suppressWarnings(library(RColorBrewer)))
 suppressMessages(suppressWarnings(library(dichromat)))
 suppressMessages(suppressWarnings(library(colorspace)))
 suppressMessages(suppressWarnings(library(munsell)))
 suppressMessages(suppressWarnings(library(labeling)))
-#suppressMessages(suppressWarnings(library(scales)))
 suppressMessages(suppressWarnings(library(digest)))
 suppressMessages(suppressWarnings(library(gtable)))
 suppressMessages(suppressWarnings(library(proto)))
-#suppressMessages(suppressWarnings(library(ggplot2)))
 suppressMessages(suppressWarnings(library(Formula)))
 suppressMessages(suppressWarnings(library(Hmisc)))
 suppressMessages(suppressWarnings(library(polynom)))

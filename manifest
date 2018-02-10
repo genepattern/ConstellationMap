@@ -3,7 +3,7 @@
 # SOFTWARE COPYRIGHT NOTICE AGREEMENT
 # The MIT License (MIT)
 
-# Copyright (c) 2015 The Broad Institute of Harvard and MIT
+# Copyright (c) 2015-2018 The Broad Institute of Harvard and MIT
 #   
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -26,13 +26,14 @@
 JVMLevel=
 LSID=urn\:lsid\:8080.gpbroad.broadinstitute.org\:genepatternmodules\:345\:1.4.4
 author=Felix Wu;Broad Institute
-commandLine=<R3.2_Rscript> <libdir>run_ConstellationMap.R <libdir> --input.gct.file\=<input.gct.file> --input.cls.file\=<input.cls.file> --gene.sets.file\=<gene.sets.file> --top.n\=<top.n> --direction\=<direction> --image.format\=<image.format> --jaccard.threshold\=<jaccard.threshold> <target.class>
+commandLine=<R3.0_Rscript> <libdir>run_ConstellationMap.R <libdir> --input.gct.file\=<input.gct.file> --input.cls.file\=<input.cls.file> --gene.sets.file\=<gene.sets.file> --top.n\=<top.n> --direction\=<direction> --image.format\=<image.format> --jaccard.threshold\=<jaccard.threshold> <target.class>
 cpuType=any
 description=A downstream visualization and analysis tool for gene set enrichment results with interactive web visualizer.
 fileFormat=odf;txt;png;pdf;html
 language=R
 name=ConstellationMap
 os=any
+job.docker.image=genepattern/docker-r-3-0
 p1_MODE=IN
 p1_TYPE=FILE
 p1_default_value=
