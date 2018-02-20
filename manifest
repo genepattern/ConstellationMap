@@ -114,6 +114,6 @@ quality=${quality.level}
 taskDoc=doc.html
 taskType=Statistical Methods
 userid=flwu
-version=Updated to MSigDB v6.1 (open-access), removed Java dependencies.
+version=Updated to MSigDB v6.1 (open-access), removed Java dependencies, portability improvements.
 
 publicationDate=02/03/2018 20\:27 
