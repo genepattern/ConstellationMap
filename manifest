@@ -1,16 +1,39 @@
+#Sat, 03 Feb 2018 20:27:22 +0900
+# The Broad Institute
+# SOFTWARE COPYRIGHT NOTICE AGREEMENT
+# The MIT License (MIT)
+
+# Copyright (c) 2015-2018 The Broad Institute of Harvard and MIT
+#   
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#   
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
 #ConstellationMap
-#Thu Jul 27 15:41:31 EDT 2017
-=
 JVMLevel=
-LSID=urn\:lsid\:8080.gpbroad.broadinstitute.org\:genepatternmodules\:345\:1.2
+LSID=urn\:lsid\:8080.gpbroad.broadinstitute.org\:genepatternmodules\:345\:1.4.4
 author=Felix Wu;Broad Institute
-commandLine=<R3.0_Rscript> <libdir>run_ConstellationMap.R <libdir> <user.dir> <patches> <java> --input.gct.file\=<input.gct.file> --input.cls.file\=<input.cls.file> --gene.sets.database\=<gene.sets.database> <gene.sets.file> --top.n\=<top.n> --direction\=<direction> --image.format\=<image.format> --jaccard.threshold\=<jaccard.threshold> <target.class>
+commandLine=<R3.0_Rscript> <libdir>run_ConstellationMap.R <libdir> --input.gct.file\=<input.gct.file> --input.cls.file\=<input.cls.file> --gene.sets.file\=<gene.sets.file> --top.n\=<top.n> --direction\=<direction> --image.format\=<image.format> --jaccard.threshold\=<jaccard.threshold> <target.class>
 cpuType=any
 description=A downstream visualization and analysis tool for gene set enrichment results with interactive web visualizer.
 fileFormat=odf;txt;png;pdf;html
-language=R;Java
+language=R
 name=ConstellationMap
 os=any
+job.docker.image=genepattern/docker-r-3-0-conmap
 p1_MODE=IN
 p1_TYPE=FILE
 p1_default_value=
@@ -35,66 +58,62 @@ p2_prefix=
 p2_prefix_when_specified=
 p2_type=java.io.File
 p2_value=
-p3_default_value=c1.all.v5.1.symbols.gmt
-p3_description=Gene sets database from GSEA website.
-p3_name=gene.sets.database
-p3_optional=on
+p3_MODE=IN
+p3_TYPE=FILE
+p3_default_value=ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c1.all.v6.1.symbols.gmt
+p3_description=Gene sets database from GSEA website.  Upload a gene set if your gene set is not listed as a choice from MsigDB.
+p3_fileFormat=gmt;gmx;grp
+p3_numValues=1
+p3_flag=
+p3_name=gene.sets.file
+p3_optional=
+p3_prefix=
 p3_prefix_when_specified=
-p3_type=java.lang.String
-p3_value=c1.all.v5.1.symbols.gmt\=c1.all.v5.1.symbols.gmt [Positional];c2.all.v5.1.symbols.gmt\=c2.all.v5.1.symbols.gmt [Curated];c2.cgp.v5.1.symbols.gmt\=c2.cgp.v5.1.symbols.gmt [Curated];c2.cp.v5.1.symbols.gmt\=c2.cp.v5.1.symbols.gmt [Curated];c2.cp.biocarta.v5.1.symbols.gmt\=c2.cp.biocarta.v5.1.symbols.gmt [Curated];c2.cp.kegg.v5.1.symbols.gmt\=c2.cp.kegg.v5.1.symbols.gmt [Curated];c2.cp.reactome.v5.1.symbols.gmt\=c2.cp.reactome.v5.1.symbols.gmt [Curated];c3.all.v5.1.symbols.gmt\=c3.all.v5.1.symbols.gmt [Motif];c3.mir.v5.1.symbols.gmt\=c3.mir.v5.1.symbols.gmt [Motif];c3.tft.v5.1.symbols.gmt\=c3.tft.v5.1.symbols.gmt [Motif];c4.all.v5.1.symbols.gmt\=c4.all.v5.1.symbols.gmt [Computational];c4.cgn.v5.1.symbols.gmt\=c4.cgn.v5.1.symbols.gmt [Computational];c4.cm.v5.1.symbols.gmt\=c4.cm.v5.1.symbols.gmt [Computational];c5.all.v5.1.symbols.gmt\=c5.all.v5.1.symbols.gmt [Gene Ontology];c5.bp.v5.1.symbols.gmt\=c5.bp.v5.1.symbols.gmt [Gene Ontology];c5.cc.v5.1.symbols.gmt\=c5.cc.v5.1.symbols.gmt [Gene Ontology];c5.mf.v5.1.symbols.gmt\=c5.mf.v5.1.symbols.gmt [Gene Ontology];c6.all.v5.1.symbols.gmt\=c6.all.v5.1.symbols.gmt [Oncogenic Signatures];c7.all.v5.1.symbols.gmt\=c7.all.v5.1.symbols.gmt [Immunologic signatures];h.all.v5.1.symbols.gmt\=h.all.v5.1.symbols.gmt [Hallmarks]
-p4_MODE=IN
-p4_TYPE=FILE
+p3_type=java.io.File
+p3_value=ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c1.all.v6.1.symbols.gmt\=c1.all.v6.1.symbols.gmt [Positional];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c2.all.v6.1.symbols.gmt\=c2.all.v6.1.symbols.gmt [Curated];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c2.cgp.v6.1.symbols.gmt\=c2.cgp.v6.1.symbols.gmt [Curated];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c2.cp.v6.1.symbols.gmt\=c2.cp.v6.1.symbols.gmt [Curated];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c2.cp.biocarta.v6.1.symbols.gmt\=c2.cp.biocarta.v6.1.symbols.gmt [Curated];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c2.cp.kegg.v6.1.symbols.gmt\=c2.cp.kegg.v6.1.symbols.gmt [Curated];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c2.cp.reactome.v6.1.symbols.gmt\=c2.cp.reactome.v6.1.symbols.gmt [Curated];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c3.all.v6.1.symbols.gmt\=c3.all.v6.1.symbols.gmt [Motif];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c3.mir.v6.1.symbols.gmt\=c3.mir.v6.1.symbols.gmt [Motif];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c3.tft.v6.1.symbols.gmt\=c3.tft.v6.1.symbols.gmt [Motif];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c4.all.v6.1.symbols.gmt\=c4.all.v6.1.symbols.gmt [Computational];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c4.cgn.v6.1.symbols.gmt\=c4.cgn.v6.1.symbols.gmt [Computational];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c4.cm.v6.1.symbols.gmt\=c4.cm.v6.1.symbols.gmt [Computational];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c5.all.v6.1.symbols.gmt\=c5.all.v6.1.symbols.gmt [Gene Ontology];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c5.bp.v6.1.symbols.gmt\=c5.bp.v6.1.symbols.gmt [Gene Ontology];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c5.cc.v6.1.symbols.gmt\=c5.cc.v6.1.symbols.gmt [Gene Ontology];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c5.mf.v6.1.symbols.gmt\=c5.mf.v6.1.symbols.gmt [Gene Ontology];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c6.all.v6.1.symbols.gmt\=c6.all.v6.1.symbols.gmt [Oncogenic Signatures];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/c7.all.v6.1.symbols.gmt\=c7.all.v6.1.symbols.gmt [Immunologic signatures];ftp\://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/h.all.v6.1.symbols.gmt\=h.all.v6.1.symbols.gmt [Hallmarks]
 p4_default_value=
-p4_description=Gene set file. Must match gene sets listed in input gct file. 
-p4_fileFormat=gmt;gmx
-p4_flag=
-p4_name=gene.sets.file
-p4_optional=on
-p4_prefix=
-p4_prefix_when_specified=--gene.sets.file\=
-p4_type=java.io.File
+p4_description=The number of gene sets to be plotted.
+p4_fileFormat=
+p4_name=top.n
+p4_optional=
+p4_prefix_when_specified=
+p4_type=java.lang.Integer
 p4_value=
-p5_default_value=
-p5_description=The number of gene sets to be plotted.
-p5_fileFormat=
-p5_name=top.n
+p5_default_value=positive
+p5_description=The direction of correlation, as measured by mutual information, to be investigated.
+p5_name=direction
 p5_optional=
+p5_prefix=
 p5_prefix_when_specified=
-p5_type=java.lang.Integer
-p5_value=
-p6_default_value=positive
-p6_description=The direction of correlation, as measured by mutual information, to be investigated.
-p6_name=direction
+p5_type=java.lang.String
+p5_value=positive;negative
+p6_default_value=PNG
+p6_description=The image file type of outputted plots, either bitmap (PNG) or vector graphics (PDF).
+p6_name=image.format
 p6_optional=
-p6_prefix=
 p6_prefix_when_specified=
 p6_type=java.lang.String
-p6_value=positive;negative
-p7_default_value=PNG
-p7_description=The image file type of outputted plots, either bitmap (PNG) or vector graphics (PDF).
-p7_name=image.format
+p6_value=PNG;PDF
+p7_default_value=0.1
+p7_description=The Jaccard index threshold above which connective edges between gene sets will be plotted.
+p7_name=jaccard.threshold
 p7_optional=
 p7_prefix_when_specified=
-p7_type=java.lang.String
-p7_value=PNG;PDF
-p8_default_value=0.1
-p8_description=The Jaccard index threshold above which connective edges between gene sets will be plotted.
-p8_name=jaccard.threshold
-p8_optional=
-p8_prefix_when_specified=
-p8_type=java.lang.Float
+p7_type=java.lang.Float
+p7_value=
+p8_default_value=
+p8_description=The phenotypic category of interest.
+p8_fileFormat=
+p8_name=target.class
+p8_optional=on
+p8_prefix_when_specified=--target.class\=
+p8_type=java.lang.String
 p8_value=
-p9_default_value=
-p9_description=The phenotypic category of interest.
-p9_fileFormat=
-p9_name=target.class
-p9_optional=on
-p9_prefix_when_specified=--target.class\=
-p9_type=java.lang.String
-p9_value=
 privacy=public
-quality=production
+quality=${quality.level}
 taskDoc=doc.html
 taskType=Statistical Methods
 userid=flwu
-version=Initial production release.
+version=Updated to MSigDB v6.1 (open-access), removed Java dependencies, portability improvements.
+
+publicationDate=02/03/2018 20\:27 

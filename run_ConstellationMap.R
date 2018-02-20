@@ -2,7 +2,7 @@
 # SOFTWARE COPYRIGHT NOTICE AGREEMENT
 # The MIT License (MIT)
 
-# Copyright (c) 2015 The Broad Institute of Harvard and MIT
+# Copyright (c) 2015-2018 The Broad Institute of Harvard and MIT
 #   
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -22,16 +22,47 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+suppressMessages(suppressWarnings(library(getopt)))
+suppressMessages(suppressWarnings(library(optparse)))
+suppressMessages(suppressWarnings(library(CvM2SL2Test)))
+suppressMessages(suppressWarnings(library(MASS)))
+suppressMessages(suppressWarnings(library(verification)))
+suppressMessages(suppressWarnings(library(smacof)))
+suppressMessages(suppressWarnings(library(calibrate)))
+suppressMessages(suppressWarnings(library(gtools)))
+suppressMessages(suppressWarnings(library(gdata)))
+suppressMessages(suppressWarnings(library(gmodels)))
+suppressMessages(suppressWarnings(library(sp)))
+suppressMessages(suppressWarnings(library(maptools)))
+suppressMessages(suppressWarnings(library(parmigene)))
+suppressMessages(suppressWarnings(library(plotrix)))
+suppressMessages(suppressWarnings(library(stringi)))
+suppressMessages(suppressWarnings(library(magrittr)))
+suppressMessages(suppressWarnings(library(stringr)))
+suppressMessages(suppressWarnings(library(RColorBrewer)))
+suppressMessages(suppressWarnings(library(dichromat)))
+suppressMessages(suppressWarnings(library(colorspace)))
+suppressMessages(suppressWarnings(library(munsell)))
+suppressMessages(suppressWarnings(library(labeling)))
+suppressMessages(suppressWarnings(library(digest)))
+suppressMessages(suppressWarnings(library(gtable)))
+suppressMessages(suppressWarnings(library(proto)))
+suppressMessages(suppressWarnings(library(Formula)))
+suppressMessages(suppressWarnings(library(Hmisc)))
+suppressMessages(suppressWarnings(library(polynom)))
+suppressMessages(suppressWarnings(library(scatterplot3d)))
+suppressMessages(suppressWarnings(library(nnls)))
+suppressMessages(suppressWarnings(library(rgl)))
+suppressMessages(suppressWarnings(library(proxy)))
+suppressMessages(suppressWarnings(library(dtw)))
+suppressMessages(suppressWarnings(library(spam)))
+suppressMessages(suppressWarnings(library(maps)))
+suppressMessages(suppressWarnings(library(fields)))
+suppressMessages(suppressWarnings(library(CircStats)))
+
 args <- commandArgs(trailingOnly=TRUE)
 
-vers <- "3.0"            # R version
 libdir <- args[1]
-server.dir <- args[2]
-patch.dir <- args[3]
-javaexec <- args[4]
-
-source(file.path(libdir, "loadRLibrary.R"))
-load.packages(libdir, patch.dir, server.dir, vers)
 
 option_list <- list(
   make_option("--input.gct.file", dest="input.gct.file"),
@@ -87,7 +118,7 @@ if(direction == "positive") {
   direction <- "DOWN"
 }
 
-# If gene.set.database.file given, parse file; else fetch gene.sets.database from MSigDB
+# If gene.set.database.file given, parse file
 if(!is.null(gs.url)) {
   gs.url.split <- unlist(strsplit(gs.url, "\\."))
   if (tail(gs.url.split, n=1) == "gmt") {
@@ -102,13 +133,7 @@ if(!is.null(gs.url)) {
     gs.prefix <- sub(".gmx", "", gs.basename)
   }
 } else {
-  tmpGSDBFile <- tempfile()
-
-  Get.GeneSets.db(javaexec, libdir, gs.database, tmpGSDBFile)  # only gmt-formatted files are downloaded from MSigDB
-  GSDB <- Read.GeneSets.gmt(tmpGSDBFile, thres.min=2, thres.max=2000, gene.names=NULL)
-  unlink(tmpGSDBFile)
-  gs.basename <- basename(gs.database)
-  gs.prefix <- sub(".gmt", "", gs.basename)
+  stop("No gene.set.database.file given")
 }
 
 # Error if top.n<3
@@ -152,7 +177,10 @@ GSDB.genesets <- GSDB$gs.names
 
 # Error if gene sets in GCT file and GMT/GMX file do not match
 if(!all(dataset.genesets %in% GSDB.genesets)) {
-  err.geneset.match <- paste("Failed to match all gene set names from", basename(gct.filename), "with corresponding gene sets from", gs.basename, sep=' ')
+   err.geneset.match <- paste("Failed to match all gene set names from", basename(gct.filename), 
+                             "with corresponding gene sets from", gs.basename, 
+                             "\nBe sure that the gene set file matches the original from the upstream job, including version,", 
+                             "\nand that combine.off is used with ssGSEAProjection if applicable.", sep=' ')
   stop(err.geneset.match)
 }
 

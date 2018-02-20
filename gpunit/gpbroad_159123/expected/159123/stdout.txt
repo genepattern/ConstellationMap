@@ -1,0 +1,74 @@
+$options
+$options$input.gct.file
+[1] "/xchip/gpbroad/servers/gpbroad/jobResults/158921/Diabetes_collapsed_symbols.PROJ.gct"
+
+$options$input.cls.file
+[1] "/xchip/gpbroad/servers/gpbroad/users/eby/uploads/tmp/run1869603784104291954.tmp/input.cls.file/1/Diabetes.cls"
+
+$options$gene.sets.file
+[1] "/xchip/gpdev/gpftp/pub/module_support_files/msigdb/gmt/h.all.v6.1.symbols.gmt"
+
+$options$top.n
+[1] "10"
+
+$options$direction
+[1] "positive"
+
+$options$image.format
+[1] "PNG"
+
+$options$jaccard.threshold
+[1] "0.1"
+
+$options$help
+[1] FALSE
+
+
+$args
+[1] "/xchip/gpbroad/servers/gpbroad/taskLib/ConstellationMap.999999999.4581/"
+
+R version 3.0.3 (2014-03-06)
+Platform: x86_64-unknown-linux-gnu (64-bit)
+
+locale:
+[1] C
+
+attached base packages:
+[1] splines   grid      methods   stats     graphics  grDevices utils    
+[8] datasets  base     
+
+other attached packages:
+ [1] nnls_1.4             scatterplot3d_0.3-35 polynom_1.3-8       
+ [4] Hmisc_3.12-2         survival_2.37-7      Formula_1.2-2       
+ [7] ggplot2_1.0.0        proto_1.0.0          gtable_0.2.0        
+[10] digest_0.6.12        scales_0.2.3         labeling_0.3        
+[13] munsell_0.4.3        colorspace_1.3-2     dichromat_2.0-0     
+[16] RColorBrewer_1.1-2   reshape2_1.2.2       stringr_1.2.0       
+[19] magrittr_1.5         stringi_1.1.5        plyr_1.8.1          
+[22] Rcpp_0.12.12         plotrix_3.5-7        parmigene_1.0.2     
+[25] maptools_0.8-30      sp_1.0-17            gmodels_2.15.4.1    
+[28] gdata_2.17.0         gtools_3.4.1         calibrate_1.7.2     
+[31] smacof_1.5-0         rgl_0.93.996         verification_1.40   
+[34] dtw_1.17-1           proxy_0.4-16         CircStats_0.2-4     
+[37] boot_1.3-16          fields_8.2-1         maps_3.1.1          
+[40] spam_1.4-0           MASS_7.3-33          CvM2SL2Test_2.0-1   
+[43] optparse_1.2.0       getopt_1.20.0       
+
+loaded via a namespace (and not attached):
+[1] cluster_1.14.4  foreign_0.8-59  lattice_0.20-27 rpart_4.1-5    
+[5] tools_3.0.3    
+ [1] "HALLMARK_ESTROGEN_RESPONSE_EARLY"        
+ [2] "HALLMARK_TNFA_SIGNALING_VIA_NFKB"        
+ [3] "HALLMARK_UV_RESPONSE_UP"                 
+ [4] "HALLMARK_ANGIOGENESIS"                   
+ [5] "HALLMARK_MYC_TARGETS_V1"                 
+ [6] "HALLMARK_P53_PATHWAY"                    
+ [7] "HALLMARK_PANCREAS_BETA_CELLS"            
+ [8] "HALLMARK_IL2_STAT5_SIGNALING"            
+ [9] "HALLMARK_REACTIVE_OXIGEN_SPECIES_PATHWAY"
+[10] "HALLMARK_DNA_REPAIR"                     
+[1] "Diabetes_collapsed_symbols.PROJ.h.all.v6.1.symbols.NGT.CONSTELLATION_MAP.png"
+[1] 0
+null device 
+          1 
+[1] TRUE
