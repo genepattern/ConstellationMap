@@ -70,10 +70,10 @@
             <fileset dir="." includes="*.R, manifest, *.html, r.package.info"/>
         </zip>
     </target>
-	
+
     <target name="devReleaseModule" depends="init_devrelease,load-release-props,create-zip,resetManifest" />
 
-	<target name="prereleaseModule" depends="init_prerelease,update-release-props,load-release-props,create-zip,resetManifest" />
+    <target name="prereleaseModule" depends="init_prerelease,update-release-props,load-release-props,create-zip,resetManifest" />
     
     <target name="releaseModule" depends="init_release,update-release-props,load-release-props,create-zip,resetManifest" />
     
