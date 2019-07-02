@@ -265,6 +265,8 @@ plot.new()
 legend("left", paste(1:length(gs), gs, sep=": "), cex=0.55)
 dev.off()
 
-# Copy html file so it appears in job results
+# Copy html, js, css files so they appear in job results
 html.filename <- "Visualizer.html"
 copy.html.file(libdir, html.filename)
+copy.html.file(libdir, "constellationmap-0.2.min.js")
+copy.html.file(libdir, "constellationmap-0.2.min.css")
