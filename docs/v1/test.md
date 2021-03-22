@@ -465,6 +465,11 @@ R
 </thead>
 <tbody>
 <tr class="even">
+<td align="left">1.4.13</td>
+<td align="left">2021-3-15</td>
+<td align="left">Updated for MSigDB v7.3</td>
+</tr>
+<tr class="even">
 <td align="left">1.4.12</td>
 <td align="left">2020-9-23</td>
 <td align="left">Updated for MSigDB v7.2</td>
@@ -487,6 +492,6 @@ R
 </tbody>
 </table>
 
-[![Broad logo](./broad-logo.png)](http://www.broadinstitute.org/)©2019
+[![Broad logo](./broad-logo.png)](http://www.broadinstitute.org/)©2021
 [Broad Institute of MIT & Harvard](http://www.broadinstitute.org/)
 
