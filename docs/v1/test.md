@@ -465,6 +465,11 @@ R
 </thead>
 <tbody>
 <tr class="even">
+<td align="left">1.4.15</td>
+<td align="left">2021-4-9</td>
+<td align="left">More flexible CLS parsing</td>
+</tr>
+<tr class="even">
 <td align="left">1.4.14</td>
 <td align="left">2021-4-2</td>
 <td align="left">Updated for MSigDB v7.4</td>

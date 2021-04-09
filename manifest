@@ -115,6 +115,6 @@ taskDoc=doc.html
 taskType=Pathway Analysis
 category=gsea;pathway analysis,viewer
 userid=flwu
-version=Updated for MSigDB v7.4.
+version=More flexible CLS parsing.
 
 publicationDate=02/03/2018 20\:27 

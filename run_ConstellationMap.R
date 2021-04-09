@@ -2,7 +2,7 @@
 # SOFTWARE COPYRIGHT NOTICE AGREEMENT
 # The MIT License (MIT)
 
-# Copyright (c) 2015-2018 The Broad Institute of Harvard and MIT
+# Copyright (c) 2015-2021 The Broad Institute of Harvard and MIT
 #   
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -213,15 +213,6 @@ if(CLS$is.continuous) {
   class.v <- as.numeric( CLS$class.v )
   class.v <- ifelse(class.v==target.ind, 0, -1)
 }
-# 
-# for(i in 1:length(class.v)){
-#   if(class.v[i] == target.ind){
-#     class.v[i] = 1
-#   } else {
-#     class.v[i] = 2
-#   }
-# }
-# print(class.v)
 
 # Read the mutual information report and select the top.n genesets
 gs.up <- as.character( extract.gene.set( report.filename, top.n, direction) )

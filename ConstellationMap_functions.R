@@ -2,7 +2,7 @@
 # SOFTWARE COPYRIGHT NOTICE AGREEMENT
 # The MIT License (MIT)
 
-# Copyright (c) 2015 The Broad Institute of Harvard and MIT
+# Copyright (c) 2021 The Broad Institute of Harvard and MIT
 #   
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -45,107 +45,6 @@ MSIG.Gct2Frame <- function(filename = "NULL") {
   names <- names(ds)
   return(list(ds = ds, row.names = row.names, descs = descs, names = names))
 } # End MSIG.Gct2Frame
-
-#######
-# MSIG.ReadPhenFile.2 <- function(file = "NULL") { 
-#   #
-#   # Reads a matrix of class vectors from a CLS file and defines phenotype and class labels vectors
-#   #  (numeric and character) for the samples in a gene expression file (RES or GCT format)
-#   #
-#   # The Broad Institute
-#   # SOFTWARE COPYRIGHT NOTICE AGREEMENT
-#   # This software and its documentation are copyright 2003 by the
-#   # Broad Institute/Massachusetts Institute of Technology.
-#   # All rights are reserved.
-#   #
-#   # This software is supplied without any warranty or guaranteed support
-#   # whatsoever. Neither the Broad Institute nor MIT can be responsible for
-#   # its use, misuse, or functionality.
-#   
-#   cls.cont <- readLines(file)
-#   num.lines <- length(cls.cont)
-#   
-#   # check for categorical (i.e., not continuous)
-#   if (cls.cont[[1]] == "#numeric") { stop(paste0("Continuous phenotype labels detected in file ", basename(file), ". ConstellationMap currently only accepts categorical phenotype labels.")) }
-#   
-#   error.msg <- paste0("Failed to parse input cls file ", basename(file), ".")
-#   
-#   # check for 3 lines
-#   if (num.lines != 3) { stop(paste0(error.msg, " Expected 3 lines. Instead saw ", num.lines, " lines.")) }
-#   
-#   # Determine delimiter or error out
-#   line1 <- unlist(strsplit(cls.cont[[1]], " "))
-#   line1 <- line1[line1!=""]
-#   if (length(line1) == 3) {
-#     delim <- " "
-#   } else {
-#     line1 <- unlist(strsplit(cls.cont[[1]], "\t"))
-#     line1 <- line1[line1!=""]
-#     if (length(line1) == 3) {
-#       delim <- "\t"
-#     } else {
-#       stop(paste0(error.msg, " Improper header line. CLS files should be space- or tab-delimited."))
-#     }
-#   }
-#   
-#   line1 <- as.numeric(line1) # convert to numeric
-#   
-#   # Extract phen.names, col.phen
-#   if (length(line1) == 3) {
-#     phen.names <- NULL
-#     col.phen <- NULL
-#   } else {
-#     l.phen.names <- match("phen.names:", line1)
-#     l.col.phen <- match("col.phen:", line1)
-#     phen.names <- line1[(l.phen.names + 1):(l.col.phen - 1)]
-#     col.phen <- line1[(l.col.phen + 1):length(line1)]
-#   }
-#   
-#   # Extract phen.list (second line)
-#   temp <- unlist(strsplit(cls.cont[[2]], " |\t"))
-#   temp <- temp[temp!=""]
-#   
-#   # Check if number of phenotypes agrees with line1
-#   if (line1[2] != length(temp)-1) { stop(paste0(error.msg, " Expected ", line1[2], " phenotypes. Instead saw ", length(temp)-1, " phenotypes.")) }
-#   phen.list <- temp[2:length(temp)]
-#   
-#   # Extract class.list
-#   phen <- NULL
-#   temp <- unlist(strsplit(cls.cont[[3]], " |\t"))
-#   len <- length(temp)
-#   # Check if number of samples agrees with line1
-#   if (line1[1] != len) { stop(paste0(error.msg, " Expected ", line1[1], " samples. Instead saw ", len, " samples.")) }
-#   class.list <- temp
-#   classes <- unique(temp)
-#   # Check if number of unique labels matches number of phenotypes
-#   if (length(classes) != line1[2]) { stop(paste0(error.msg, " Expected ", line1[2], " labels. Instead saw ", length(classes), " labels.")) }
-#   class.v <- match(temp, classes)
-#   phen <- c(phen, classes)
-#   
-# #   phen <- NULL
-# #   for (k in 1:(num.lines - 2)) {
-# #     temp <- unlist(strsplit(cls.cont[[k + 2]], " |\t"))
-# #     if (k == 1) {
-# #       len <- length(temp)
-# #       class.list <- matrix(0, nrow = num.lines - 2, ncol = len)
-# #       class.v <- matrix(0, nrow = num.lines - 2, ncol = len)
-# #       #           phen <- NULL
-# #     }
-# #     class.list[k, ] <- temp
-# #     classes <- unique(temp)
-# #     class.v[k, ] <- match(temp, classes)
-# #     #        phen[[k]] <- classes
-# #     phen <- c(phen, classes)
-# #   }
-# #   if (num.lines == 3) {
-# #     class.list <- as.vector(class.list)
-# #     class.v <- as.vector(class.v)
-# #     #         phen <- unlist(phen)
-# #   }
-#   return(list(phen.list = phen.list, phen = phen, phen.names = phen.names, col.phen = col.phen,
-#               class.v = class.v, class.list = class.list))
-# } # End MSIG.ReadPhenFile.2
-######
 
 MSIG.ReadPhenFile.2 <- function(file = "NULL") { 
   #
@@ -191,21 +90,12 @@ MSIG.ReadPhenFile.2 <- function(file = "NULL") {
     class.v <- NULL
     class.list <- NULL
     
-    # Determine delimiter or error out
-#    delim <- " "
+    # Check line 3 for non-numeric values
     label.tmp <- unlist(strsplit(label.lines[1], " |\t"))
     label.tmp.str <- label.tmp[label.tmp!=""]
     label.tmp.num <- as.numeric(label.tmp.str)
     if (any(is.na(label.tmp.num))) {
-#      delim <- "\t"
-#      label.tmp <- unlist(strsplit(label.lines[1], " |\t"))
-#      label.tmp.str <- label.tmp[label.tmp!=""]
-#      label.tmp.num <- as.numeric(label.tmp.str)
-#      if (any(is.na(label.tmp.num))) {
-        stop(paste0(error.msg, " Non-numeric values found in line 3. CLS files should be space- or tab-delimited."))
-#      } else {
-#        warning(paste0("Tab-delimiters detected in ", file.name, ". Space-delimited CLS files are preferred."))
-#      }
+      stop(paste0(error.msg, " Non-numeric values found in line 3. CLS files should be space- or tab-delimited."))
     }
     
     n.row <- length(label.lines)
@@ -244,19 +134,11 @@ MSIG.ReadPhenFile.2 <- function(file = "NULL") {
     # Check for 3 lines
     if (num.lines != 3) { stop(paste0(error.msg, " Expected 3 lines in categorical type CLS file. Instead saw ", num.lines, " lines.")) }
     
-    # Determine delimiter or error out
-#    delim <- " "
+    # Check for correct number of header values
     line1 <- unlist(strsplit(cls.cont[[1]], " |\t"))
     line1 <- line1[line1!=""]
     if (length(line1) != 3) {
-#      delim <- "\t"
-#      line1 <- unlist(strsplit(cls.cont[[1]], " |\t"))
-#      line1 <- line1[line1!=""]
-#      if (length(line1) == 3) {
-#        warning(paste0("Tab-delimiters detected in ", file.name, ". Space-delimited CLS files are preferred."))
-#      } else {
-        stop(paste0(error.msg, " Improper header line. CLS files should be space- or tab-delimited."))
-#      }
+      stop(paste0(error.msg, " Improper header line, must be exactly 3 values. CLS files should be space- or tab-delimited."))
     }
     
     line1 <- as.numeric(line1) # convert to numeric
@@ -300,57 +182,6 @@ MSIG.ReadPhenFile.2 <- function(file = "NULL") {
 
 # FUNCTIONS FOR READING GENE SET FILES (GMT, GMX)
 #----------------------------------------------------------------------
-
-# Read.GeneSets.gmt <- function(
-#   gs.db,
-#   thres.min = 2,
-#   thres.max = 2000,
-#   gene.names = NULL) {
-#   
-#   temp <- readLines(gs.db)
-#   max.Ng <- length(temp)
-#   temp.size.G <- vector(length = max.Ng, mode = "numeric") 
-#   for (i in 1:max.Ng) {
-#     temp.size.G[i] <- length(unlist(strsplit(temp[[i]], "\t"))) - 2
-#   }
-#   max.size.G <- max(temp.size.G)      
-#   gs <- matrix(rep("null", max.Ng*max.size.G), nrow=max.Ng, ncol= max.size.G)
-#   temp.names <- vector(length = max.Ng, mode = "character")
-#   temp.desc <- vector(length = max.Ng, mode = "character")
-#   gs.count <- 1
-#   for (i in 1:max.Ng) {
-#     gene.set.size <- length(unlist(strsplit(temp[[i]], "\t"))) - 2
-#     gs.line <- noquote(unlist(strsplit(temp[[i]], "\t")))
-#     gene.set.name <- gs.line[1] 
-#     gene.set.desc <- gs.line[2] 
-#     gene.set.tags <- vector(length = gene.set.size, mode = "character")
-#     for (j in 1:gene.set.size) {
-#       gene.set.tags[j] <- gs.line[j + 2]
-#     }
-#     if (is.null(gene.names)) {
-#       existing.set <- rep(TRUE, length(gene.set.tags))
-#     } else {
-#       existing.set <- is.element(gene.set.tags, gene.names)
-#     }
-#     set.size <- length(existing.set[existing.set == T])
-#     if ((set.size < thres.min) || (set.size > thres.max)) next
-#     temp.size.G[gs.count] <- set.size
-#     gs[gs.count,] <- c(gene.set.tags[existing.set], rep("null", max.size.G - temp.size.G[gs.count]))
-#     temp.names[gs.count] <- gene.set.name
-#     temp.desc[gs.count] <- gene.set.desc
-#     gs.count <- gs.count + 1
-#   }
-#   Ng <- gs.count - 1
-#   gs.names <- vector(length = Ng, mode = "character")
-#   gs.desc <- vector(length = Ng, mode = "character")
-#   size.G <- vector(length = Ng, mode = "numeric") 
-#   
-#   gs.names <- temp.names[1:Ng]
-#   gs.desc <- temp.desc[1:Ng]
-#   size.G <- temp.size.G[1:Ng]
-#   
-#   return(list(N.gs = Ng, gs = gs, gs.names = gs.names, gs.desc = gs.desc, size.G = size.G, max.N.gs = max.Ng))
-# } # End Read.GeneSets.gmt
 
 Read.GeneSets.gmt <- function(
   gs.db,
@@ -500,36 +331,10 @@ OPAM.Evaluate.Results.2 <- function(
     target <- ifelse(parsed.cls$class.list == target.symbol, 1, 0)
   }
   
-  #   # Added some code to accept class names and convert to symbols
-  #   target.class <- CLS$phen[match(target.class, CLS$phen.list)]
-  #   
-  #   if (is.null(phenotype)) {
-  #     phen.loc <- 1
-  #   } else {
-  #     phen.loc <- match(phenotype, CLS$phen.list)
-  #   }
-  #   if (is.vector(CLS$class.list)) {
-  #     target.vec <- CLS$class.list
-  #   } else {
-  #     target.vec <- CLS$class.list[phen.loc,]
-  #   }
-  #   if (target.type == "continuous") {
-  #     target <- target.vec
-  #   } else if (target.type == "discrete") {
-  #     target <- ifelse(target.vec == target.class, 1, 0)    
-  #   }
-  
   ind <- order(target)
   target <- target[ind]
-#   target.vec <- target.vec[ind]
   m <- as.matrix(m)[, ind]
   sample.names <- sample.names[ind]
-  #   class.v <- CLS$class.v
-  #   if (is.vector(class.v)) {
-  #     class.v <- class.v[ind]
-  #   } else {
-  #     class.v <- class.v[, ind]
-  #   }
   annot <- MI <- AUC <- AUC.pval <- t.stat <- t.pval <- vector(length=N, mode="numeric")
   
   NMI.ref <- mutual.inf.P(x = target, y = target, n.grid=100)$NMI
@@ -542,10 +347,8 @@ OPAM.Evaluate.Results.2 <- function(
     }
     MI[i] <- signif(mutual.inf.P(target, feature, n.grid=100)$NMI/NMI.ref, 4)
     if (parsed.cls$is.continuous) {
-      #     if (target.type == "continuous") {
       AUC[i] <- AUC.pval[i] <- t.stat[i] <- t.pval[i] <- "-"
     } else {
-      #     } else if (target.type == "discrete") {
       feature.norm <- (feature - min(feature))/(max(feature) - min(feature))
       perf.auc <- roc.area(target, feature.norm)
       AUC[i] <- ifelse(perf.auc$A < 0.5, -(1 - perf.auc$A), perf.auc$A)
@@ -589,7 +392,6 @@ OPAM.Evaluate.Results.2 <- function(
   max.v <- max(max(target), -min(target))
   V1 <- target
   if (parsed.cls$is.continuous) {
-    #   if (target.type == "continuous") {
     target.min <- min(target)
     target.max <- max(target)
     
@@ -599,7 +401,6 @@ OPAM.Evaluate.Results.2 <- function(
     image(1:length(target), 1:1, as.matrix(V1), zlim = c(target.min, target.max), col=col.vector, axes=FALSE, main="", sub = "", xlab= "", ylab="")
     axis(3, at=c(1, round(length(target)/2), length(target)), labels=c(target.min, target.class, target.max), adj= 0.5, tick=FALSE, las = 1, cex.axis=0.70, font.axis=1, line=-1)
   } else {
-    #   } else if (target.type == "discrete") {
     image(1:length(target), 1:1, as.matrix(V1), zlim = c(0, 1), col=c("yellow", "purple"), axes=FALSE, main="", sub = "", xlab= "", ylab="")
     axis(3, at=length(target):length(target), labels=target.class, adj= 0.5, tick=FALSE, las = 1, cex.axis=0.70, font.axis=1, line=-1)
   }
@@ -917,8 +718,6 @@ gs.size <- function(GSDB, genesets) {
 
 # This function will calculate the connection between two genesets, based on Jaccard Coefficient
 jaccard.coef <- function(GSDB, genesets){
-#   write.table(GSDB,"GSDB.txt",append = F,quote = F,sep='\t')
-#   write.table(genesets,"genesets.txt",append = F,quote = F,sep='\t')
   # Read gene set databases
   max.G <- 0
   size.G <- GSDB$size.G
@@ -953,45 +752,6 @@ jaccard.coef <- function(GSDB, genesets){
   
   return(jac.coef)	
 } # End jaccard.coef
-
-########
-# This function will calculate the jaccard index as well as report the number of genes in the gene set
-# gene.set.stats <- function(gsdb, genesets){
-#   max.G <- 0
-#   GSDB <- Read.GeneSets.db(gsdb, thres.min = 2, thres.max = 2000, gene.names = NULL)
-#   size.G <- GSDB$size.G
-#   N.gs <- GSDB$N.gs
-#   max.G <- max(GSDB$size.G)
-#   gs.names <- GSDB$gs.names
-#   
-#   gs <- matrix("null", nrow = N.gs, ncol = max.G)
-#   gs[1:N.gs, 1:max.G] <- GSDB$gs[1:N.gs, 1:max.G]
-#   
-#   # Select desired genesets
-#   locs <- match(genesets, gs.names)
-#   gs <- gs[locs, ]
-#   gs.names <- gs.names[locs]
-#   size.G <- size.G[locs]
-#   
-#   N.gs <- sum(!is.na(locs))
-#   
-#   # Loop over genesets to generate the Jaccard coefficient matrix
-#   jac.coef <- matrix(1, nrow = N.gs, ncol = N.gs)
-#   for (i in 1:(N.gs - 1)){
-#     gene.set.i <- gs[i, 1:size.G[i]]
-#     for (j in (i + 1):N.gs){
-#       gene.set.j <- gs[j, 1:size.G[j]]
-#       overlap <- length(intersect(gene.set.i, gene.set.j))
-#       union <- length(union(gene.set.i, gene.set.j))
-#       coef <- signif(overlap / union, 4)
-#       jac.coef[i, j] <- coef
-#       jac.coef[j, i] <- coef
-#     }	
-#   }
-#   
-#   return(list(coef = jac.coef, size = size.G))
-# } # End gene.set.stats
-########
 
 extract.gene.set <- function(report.file, top.n, target){
   report <- read.table(report.file, header=T, sep="\t")
@@ -1072,7 +832,6 @@ write.odf <- function(input.df, out.filename, header.list=NULL, convert.integers
     }#End get.type()
     
     out.types <- lapply(df, get.type)
-    #     names(out.types) <- NULL
     return(unlist(out.types))
   }#End get.col.types()
   
@@ -1215,10 +974,6 @@ plot.data2odf.file <- function(
   header.list[["Dataset File"]] <- gct.filename
   header.list[["Class File"]] <- cls.filename
   header.list[["Gene Set Database"]] <- gs.prefix
-#   for(i in 1:length(parsed.cls$phen.list)){
-#     key <- paste0("Class ", parsed.cls$phen[i])
-#     header.list[[key]] <- parsed.cls$phen.list[i]
-#   }
   header.list[["Target Class"]] <- target.class
   header.list[["Jaccard Threshold"]] <- jaccard.threshold
   header.list$Direction <- direction
@@ -1259,9 +1014,6 @@ plot.data2odf.file <- function(
   
   # Write nodes odf file
   write.odf(input.df=df, out.filename=out.filename, header.list=header.list, convert.integers=F)
-
-  # Coerce edgepairs to matrix if not already matrix
-#   if(!is.matrix(edgepairs)) {edgepairs <- t(as.matrix(edgepairs))}
 
   # Build header list for edges odf
   header.list2 <- header.list
