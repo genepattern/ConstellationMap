@@ -102,7 +102,7 @@ MSIG.Gct2Frame <- function(filename = "NULL") {
 #   }
 #   
 #   # Extract phen.list (second line)
-#   temp <- unlist(strsplit(cls.cont[[2]], delim))
+#   temp <- unlist(strsplit(cls.cont[[2]], " |\t"))
 #   temp <- temp[temp!=""]
 #   
 #   # Check if number of phenotypes agrees with line1
@@ -111,7 +111,7 @@ MSIG.Gct2Frame <- function(filename = "NULL") {
 #   
 #   # Extract class.list
 #   phen <- NULL
-#   temp <- unlist(strsplit(cls.cont[[3]], delim))
+#   temp <- unlist(strsplit(cls.cont[[3]], " |\t"))
 #   len <- length(temp)
 #   # Check if number of samples agrees with line1
 #   if (line1[1] != len) { stop(paste0(error.msg, " Expected ", line1[1], " samples. Instead saw ", len, " samples.")) }
@@ -124,7 +124,7 @@ MSIG.Gct2Frame <- function(filename = "NULL") {
 #   
 # #   phen <- NULL
 # #   for (k in 1:(num.lines - 2)) {
-# #     temp <- unlist(strsplit(cls.cont[[k + 2]], delim))
+# #     temp <- unlist(strsplit(cls.cont[[k + 2]], " |\t"))
 # #     if (k == 1) {
 # #       len <- length(temp)
 # #       class.list <- matrix(0, nrow = num.lines - 2, ncol = len)
@@ -192,20 +192,20 @@ MSIG.ReadPhenFile.2 <- function(file = "NULL") {
     class.list <- NULL
     
     # Determine delimiter or error out
-    delim <- " "
-    label.tmp <- unlist(strsplit(label.lines[1], delim))
+#    delim <- " "
+    label.tmp <- unlist(strsplit(label.lines[1], " |\t"))
     label.tmp.str <- label.tmp[label.tmp!=""]
     label.tmp.num <- as.numeric(label.tmp.str)
     if (any(is.na(label.tmp.num))) {
-      delim <- "\t"
-      label.tmp <- unlist(strsplit(label.lines[1], delim))
-      label.tmp.str <- label.tmp[label.tmp!=""]
-      label.tmp.num <- as.numeric(label.tmp.str)
-      if (any(is.na(label.tmp.num))) {
+#      delim <- "\t"
+#      label.tmp <- unlist(strsplit(label.lines[1], " |\t"))
+#      label.tmp.str <- label.tmp[label.tmp!=""]
+#      label.tmp.num <- as.numeric(label.tmp.str)
+#      if (any(is.na(label.tmp.num))) {
         stop(paste0(error.msg, " Non-numeric values found in line 3. CLS files should be space- or tab-delimited."))
-      } else {
-        warning(paste0("Tab-delimiters detected in ", file.name, ". Space-delimited CLS files are preferred."))
-      }
+#      } else {
+#        warning(paste0("Tab-delimiters detected in ", file.name, ". Space-delimited CLS files are preferred."))
+#      }
     }
     
     n.row <- length(label.lines)
@@ -223,7 +223,7 @@ MSIG.ReadPhenFile.2 <- function(file = "NULL") {
       }
       
       if(i > 1) {
-        label.tmp <- unlist(strsplit(label.lines[i], delim))
+        label.tmp <- unlist(strsplit(label.lines[i], " |\t"))
         label.tmp.str <- label.tmp[label.tmp!=""]
         label.tmp.num <- as.numeric(label.tmp.str)
         
@@ -245,18 +245,18 @@ MSIG.ReadPhenFile.2 <- function(file = "NULL") {
     if (num.lines != 3) { stop(paste0(error.msg, " Expected 3 lines in categorical type CLS file. Instead saw ", num.lines, " lines.")) }
     
     # Determine delimiter or error out
-    delim <- " "
-    line1 <- unlist(strsplit(cls.cont[[1]], delim))
+#    delim <- " "
+    line1 <- unlist(strsplit(cls.cont[[1]], " |\t"))
     line1 <- line1[line1!=""]
     if (length(line1) != 3) {
-      delim <- "\t"
-      line1 <- unlist(strsplit(cls.cont[[1]], delim))
-      line1 <- line1[line1!=""]
-      if (length(line1) == 3) {
-        warning(paste0("Tab-delimiters detected in ", file.name, ". Space-delimited CLS files are preferred."))
-      } else {
+#      delim <- "\t"
+#      line1 <- unlist(strsplit(cls.cont[[1]], " |\t"))
+#      line1 <- line1[line1!=""]
+#      if (length(line1) == 3) {
+#        warning(paste0("Tab-delimiters detected in ", file.name, ". Space-delimited CLS files are preferred."))
+#      } else {
         stop(paste0(error.msg, " Improper header line. CLS files should be space- or tab-delimited."))
-      }
+#      }
     }
     
     line1 <- as.numeric(line1) # convert to numeric
@@ -273,7 +273,7 @@ MSIG.ReadPhenFile.2 <- function(file = "NULL") {
     }
     
     # Extract phen.list (second line)
-    temp <- unlist(strsplit(cls.cont[[2]], delim))
+    temp <- unlist(strsplit(cls.cont[[2]], " |\t"))
     temp <- temp[temp!=""]
     
     # Check if number of phenotypes agrees with line1
@@ -282,7 +282,7 @@ MSIG.ReadPhenFile.2 <- function(file = "NULL") {
     
     # Extract class.list
     phen <- NULL
-    temp <- unlist(strsplit(cls.cont[[3]], delim))
+    temp <- unlist(strsplit(cls.cont[[3]], " |\t"))
     temp <- temp[temp!=""]
     len <- length(temp)
     # Check if number of samples agrees with line1
