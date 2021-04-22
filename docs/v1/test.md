@@ -464,6 +464,11 @@ R
 </tr>
 </thead>
 <tbody>
+<tr class="odd">
+<td align="left">1.4.16</td>
+<td align="left">2021-4-22</td>
+<td align="left">Fixed minor typo</td>
+</tr>
 <tr class="even">
 <td align="left">1.4.15</td>
 <td align="left">2021-4-9</td>
