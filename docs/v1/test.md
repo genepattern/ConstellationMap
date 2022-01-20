@@ -464,6 +464,11 @@ R
 </tr>
 </thead>
 <tbody>
+<tr class="odd">
+<td align="left">1.4.18</td>
+<td align="left">2022-1-19</td>
+<td align="left">Updated to MSigDB v7.5.1.</td>
+</tr>
 <tr class="even">
 <td align="left">1.4.17</td>
 <td align="left">2022-1-12</td>
