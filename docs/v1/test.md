@@ -465,6 +465,11 @@ R
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left">1.4.19</td>
+<td align="left">2022-9-15</td>
+<td align="left">Updated to Human MSigDB v2022.1.Hs. Direct support for Mouse MSigDB 2022.1.Mm is not yet available</td>
+</tr>
+<tr class="odd">
 <td align="left">1.4.18</td>
 <td align="left">2022-1-19</td>
 <td align="left">Updated to MSigDB v7.5.1.</td>
