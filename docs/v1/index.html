@@ -66,7 +66,7 @@
 
 <h2>Example Workflows</h2>
 
-<p style="line-height: 20.8px;">Users may input gene set enrichment data produced by any algorithm as long as it is in&nbsp;<a href="https://www.broadinstitute.org/cancer/software/genepattern/file-formats-guide#GCT">GCT format</a>, as well as any gene set collection in&nbsp;<a href="https://www.broadinstitute.org/cancer/software/genepattern/file-formats-guide#GMX">GMX</a>&nbsp;or&nbsp;<a href="https://www.broadinstitute.org/cancer/software/genepattern/file-formats-guide#GMT">GMT</a>&nbsp;format. For convenience, GenePattern modules including ConstellationMap provide MSigDB gene set collection files from a drop-down menu. The two module workflow examples presented here both use outputs from GenePattern’s&nbsp;<a href="http://www.broadinstitute.org/cancer/software/genepattern/modules/docs/ssGSEAProjection">ssGSEAProjection module</a>&nbsp;as inputs to ConstellationMap. Workflow (A) uses ssGSEAProjection only on user-specified enriched sets, e.g. those previously identified from another analysis, while Workflow (B) uses enrichment rankings computed by ssGSEAProjection on the expression dataset in ConstellationMap. Users may choose Workflow (A) if they have a preferred method (e.g., GSEA) for identifying gene sets highly associated with a phenotypic class. If users do not have a preferred method, then they may use Workflow (B), which uses NMI to identify highly associated gene sets.&nbsp;See the following figure for a visual representation of the two workflows.</p>
+<p style="line-height: 20.8px;">Users may input gene set enrichment data produced by any algorithm as long as it is in&nbsp;<a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GCT:_Gene_Cluster_Text_file_format_.28.2A.gct.29">GCT format</a>, as well as any gene set collection in&nbsp;<a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMX:_Gene_MatriX_file_format_.28.2A.gmx.29">GMX</a>&nbsp;or&nbsp;<a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29">GMT</a>&nbsp;format. For convenience, GenePattern modules including ConstellationMap provide MSigDB gene set collection files from a drop-down menu. The two module workflow examples presented here both use outputs from GenePattern’s&nbsp;<a href="http://www.broadinstitute.org/cancer/software/genepattern/modules/docs/ssGSEAProjection">ssGSEAProjection module</a>&nbsp;as inputs to ConstellationMap. Workflow (A) uses ssGSEAProjection only on user-specified enriched sets, e.g. those previously identified from another analysis, while Workflow (B) uses enrichment rankings computed by ssGSEAProjection on the expression dataset in ConstellationMap. Users may choose Workflow (A) if they have a preferred method (e.g., GSEA) for identifying gene sets highly associated with a phenotypic class. If users do not have a preferred method, then they may use Workflow (B), which uses NMI to identify highly associated gene sets.&nbsp;See the following figure for a visual representation of the two workflows.</p>
 
 <p style="line-height: 20.8px;"><img alt="ConstellationMap Workflow Figure" src="./content_constellationmap_workflow.png" style="width: 500px; height: 436px; border-width: 1px; border-style: solid;"></p>
 
@@ -173,12 +173,12 @@
 		<tr>
 			<td>input gct file&nbsp;<span style="color: red;">*</span></td>
 			<td>
-			<p>This is a tab-delimited text file in&nbsp;<a href="https://www.broadinstitute.org/cancer/software/genepattern/file-formats-guide#GCT">GCT format</a>&nbsp;containing gene set enrichment data outputted from an ssGSEAProjection (single sample gene set enrichment analysis projection) module job.</p>
+			<p>This is a tab-delimited text file in&nbsp;<a href="http://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GCT:_Gene_Cluster_Text_file_format_.28.2A.gct.29">GCT format</a>&nbsp;containing gene set enrichment data outputted from an ssGSEAProjection (single sample gene set enrichment analysis projection) module job.</p>
 			ConstellationMap assumes that the input GCT file is a gene set enrichment file outputted by an ssGSEAProjection module job. Rows should correspond to gene sets while columns should correspond to sample names. The gene sets specified in the GCT file must be a subset of the gene sets listed in the accompanying&nbsp;<em>gene sets database&nbsp;</em>or<em>&nbsp;gene sets file</em>&nbsp;(see below).</td>
 		</tr>
 		<tr>
 			<td>input cls file&nbsp;<span style="color: red;">*</span></td>
-			<td>A space-delimited text file in&nbsp;<a href="https://www.broadinstitute.org/cancer/software/genepattern/file-formats-guide#CLS">CLS format</a>&nbsp;containing two-phenotype categorical labels (e.g., tumor vs. normal) or continuous phenotype labels (e.g., time series). For each sample in the corresponding expression dataset the CLS file assigns a label or numerical value for the phenotype.</td>
+			<td>A space-delimited text file in&nbsp;<a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#CLS:_Categorical_.28e.g_tumor_vs_normal.29_class_file_format_.28.2A.cls.29">CLS format</a>&nbsp;containing two-phenotype categorical labels (e.g., tumor vs. normal) or continuous phenotype labels (e.g., time series). For each sample in the corresponding expression dataset the CLS file assigns a label or numerical value for the phenotype.</td>
 		</tr>
 		<tr>
 			<td>gene sets database&nbsp;</td>
@@ -187,14 +187,14 @@
 
 			<p>If you want to use files from an earlier version of MSigDB, you will need to download that file from the archived releases on the website and specify it in the gene sets file parameter.</p>
 
-			<p>You can also upload a&nbsp;gene set file in&nbsp;<a href="https://www.broadinstitute.org/cancer/software/genepattern/file-formats-guide#GMT">GMT</a>&nbsp;or&nbsp;<a href="https://www.broadinstitute.org/cancer/software/genepattern/file-formats-guide#GMX">GMX</a>&nbsp;format. Provide your gene set file here if it is unavailable from the drop-down menu.</p>
+			<p>You can also upload a&nbsp;gene set file in&nbsp;<a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29">GMT</a>&nbsp;or&nbsp;<a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMX:_Gene_MatriX_file_format_.28.2A.gmx.29">GMX</a>&nbsp;format. Provide your gene set file here if it is unavailable from the drop-down menu.</p>
 
 			<p><strong>Note:</strong>&nbsp;while the upstream GSEA, GSEAPreranked, and ssGSEAProjection modules all permit selection of multiple gene set files,&nbsp;<strong>this is not supported by ConstellationMap at this time.</strong>&nbsp; As a workaround, you can combine the gene set files by hand and upload the single combined file.</p>
 			</td>
 		</tr>
 		<tr>
 			<td>gene sets file&nbsp;</td>
-			<td>A gene set file in&nbsp;<a href="https://www.broadinstitute.org/cancer/software/genepattern/file-formats-guide#GMT">GMT</a>&nbsp;or&nbsp;<a href="https://www.broadinstitute.org/cancer/software/genepattern/file-formats-guide#GMX">GMX</a>&nbsp;format. Provide your gene set file here if it is unavailable from the drop-down menu under&nbsp;<em>gene sets database</em>.</td>
+			<td>A gene set file in&nbsp;<a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29">GMT</a>&nbsp;or&nbsp;<a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMX:_Gene_MatriX_file_format_.28.2A.gmx.29">GMX</a>&nbsp;format. Provide your gene set file here if it is unavailable from the drop-down menu under&nbsp;<em>gene sets database</em>.</td>
 		</tr>
 		<tr>
 			<td>top n&nbsp;<span style="color: red;">*</span></td>
@@ -243,11 +243,11 @@
 
 <ol style="line-height: 20.8px;">
 	<li>input gct file<br>
-	Gene set enrichment data file in&nbsp;<a href="https://www.broadinstitute.org/cancer/software/genepattern/file-formats-guide#GCT">GCT format</a>.&nbsp;Each row of the GCT file matrix should represent a gene set while each column should represent a sample. Each matrix element should contain an enrichment score indicating the degree to which the given gene set’s members are coordinately up- or down-regulated in the given sample.&nbsp;Output from the&nbsp;<a href="https://www.broadinstitute.org/cancer/software/genepattern/modules/docs/ssGSEAProjection/">ssGSEAProjection module</a>&nbsp;can be directly input into ConstellationMap.</li>
+	Gene set enrichment data file in&nbsp;<a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GCT:_Gene_Cluster_Text_file_format_.28.2A.gct.29">GCT format</a>.&nbsp;Each row of the GCT file matrix should represent a gene set while each column should represent a sample. Each matrix element should contain an enrichment score indicating the degree to which the given gene set’s members are coordinately up- or down-regulated in the given sample.&nbsp;Output from the&nbsp;<a href="https://www.broadinstitute.org/cancer/software/genepattern/modules/docs/ssGSEAProjection/">ssGSEAProjection module</a>&nbsp;can be directly input into ConstellationMap.</li>
 	<li>input cls file<br>
-	Class designation file in&nbsp;<a href="https://www.broadinstitute.org/cancer/software/genepattern/file-formats-guide#CLS">CLS format</a>.</li>
+	Class designation file in&nbsp;<a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#CLS:_Categorical_.28e.g_tumor_vs_normal.29_class_file_format_.28.2A.cls.29">CLS format</a>.</li>
 	<li>gene sets file or database<br>
-	Gene sets file in&nbsp;<a href="https://www.broadinstitute.org/cancer/software/genepattern/file-formats-guide#GMT">GMT</a>&nbsp;or&nbsp;<a href="https://www.broadinstitute.org/cancer/software/genepattern/file-formats-guide#GMX">GMX</a>&nbsp;format provided by the user or drawn from&nbsp;<a href="http://www.msigdb.org/">MSigDB</a>&nbsp;by selection from the pull-down menu.</li>
+	Gene sets file in&nbsp;<a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29">GMT</a>&nbsp;or&nbsp;<a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMX:_Gene_MatriX_file_format_.28.2A.gmx.29">GMX</a>&nbsp;format provided by the user or drawn from&nbsp;<a href="http://www.msigdb.org/">MSigDB</a>&nbsp;by selection from the pull-down menu.</li>
 </ol>
 
 <h2>Output Files</h2>
