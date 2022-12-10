@@ -18,35 +18,35 @@ interactive web application the enrichment profile similarity and gene
 member overlap of gene sets, which are positively or negatively enriched
 in relation to a phenotype in a two-class or continuous-class
 comparison. It uses provided enrichment scores (e.g., those generated
-by [ssGSEAProjection](http://www.broadinstitute.org/cancer/software/genepattern/modules/docs/ssGSEAProjection))
+by [ssGSEAProjection](http://www.broadinstitute.org/cancer/software/genepattern/modules/docs/ssGSEAProjection))
 to estimate normalized mutual information (NMI) scores and project top
 scoring sets onto a circular plot with the following features:
 
-(1) Gene sets are represented as **nodes** with radial distance to the
+(1) Gene sets are represented as **nodes** with radial distance to the
 center reflecting positive or negative enrichment in the phenotype,
 whichever direction is specified. Higher associations for the
 correlation direction are plotted closer to the center.
 
 (2) Member gene overlaps between sets are represented
-as **edges** connecting nodes with thickness proportional to degree of
+as **edges** connecting nodes with thickness proportional to degree of
 overlap.
 
 (3) The angular distance between nodes is relatively proportional to the
 similarity of their enrichment profiles, i.e. more similar enrichment
 patterns have a smaller angular distance.
 
-**See the video tutorial**: [Using the Constellation Map
+**See the video tutorial**: [Using the Constellation Map
 Visualizer](http://www.youtube.com/watch_popup?v=puadjX_xh8g)
 
-**See the *F1000Research *paper (Tan Y, Wu F, Tamayo P *et al.*,
-2015): **PubMed (<http://www.ncbi.nlm.nih.gov/pubmed/26594333>), DOI
+**See the _F1000Research paper (Tan Y, Wu F, Tamayo P et al._,
+2015):** PubMed (<http://www.ncbi.nlm.nih.gov/pubmed/26594333>), DOI
 ([10.12688/f1000research.6644.1)](http://dx.doi.org/10.12688/f1000research.6644.1)
 
 Web interactive features allow export of selected overlapping gene
 symbols for annotation
-in [DAVID](http://david.abcc.ncifcrf.gov/), [MSigDB](http://www.msigdb.org/),
-and [GeneMania](http://genemania.org/). Click on the output
-file *Visualizer.html* to open the interactive ConstellationMap plot
+in [DAVID](http://david.abcc.ncifcrf.gov/), [MSigDB](http://www.msigdb.org/),
+and [GeneMania](http://genemania.org/). Click on the output
+file *Visualizer.html* to open the interactive ConstellationMap plot
 from the Jobs Tab.
 
   - Use mouse click on the web visualization to select a node or an
@@ -69,15 +69,15 @@ as green lines, and a key of the numbered gene sets.
 ## Example Workflows
 
 Users may input gene set enrichment data produced by any algorithm as
-long as it is in [GCT
+long as it is in [GCT
 format](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GCT:_Gene_Cluster_Text_file_format_.28.2A.gct.29),
 as well as any gene set collection
-in [GMX](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMX:_Gene_MatriX_file_format_.28.2A.gmx.29) or [GMT](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29) format.
+in [GMX](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMX:_Gene_MatriX_file_format_.28.2A.gmx.29) or [GMT](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29) format.
 For convenience, GenePattern modules including ConstellationMap provide
 MSigDB gene set collection files from a drop-down menu. The two module
 workflow examples presented here both use outputs from
-GenePattern’s [ssGSEAProjection
-module](http://www.broadinstitute.org/cancer/software/genepattern/modules/docs/ssGSEAProjection) as
+GenePattern’s [ssGSEAProjection
+module](http://www.broadinstitute.org/cancer/software/genepattern/modules/docs/ssGSEAProjection) as
 inputs to ConstellationMap. Workflow (A) uses ssGSEAProjection only on
 user-specified enriched sets, e.g. those previously identified from
 another analysis, while Workflow (B) uses enrichment rankings computed
@@ -85,7 +85,7 @@ by ssGSEAProjection on the expression dataset in ConstellationMap. Users
 may choose Workflow (A) if they have a preferred method (e.g., GSEA) for
 identifying gene sets highly associated with a phenotypic class. If
 users do not have a preferred method, then they may use Workflow (B),
-which uses NMI to identify highly associated gene sets. See the
+which uses NMI to identify highly associated gene sets. See the
 following figure for a visual representation of the two workflows.
 
 ![ConstellationMap Workflow
@@ -123,7 +123,7 @@ method) → ssGSEAProjection → ConstellationMap
 
 ### Workflow (B)
 
-Whole Transcriptome Expression Data → ssGSEAProjection  →
+Whole Transcriptome Expression Data → ssGSEAProjection →
 ConstellationMap
 
 1.  Run the ssGSEAProjection module with the following parameter
@@ -141,27 +141,27 @@ ConstellationMap
     3.  *gene sets database (file)*: same as used in step (1)
     4.  *top n*: set to a number equal to or less than the number of
         gene sets ssGSEAProjection identifies to be associated with the
-        phenotype in the given *direction* (i.e., positive or negative).
+        phenotype in the given *direction* (i.e., positive or negative).
 
 For gene set collections that do not utilize \_UP and \_DN suffixes at
-the ends of set names, the *combine mode *parameter option is irrelevant
+the ends of set names, the *combine mode *parameter option is irrelevant
 as all the modes give the same output.
 
 As of MSigDB v5.0, released March 2015, four collections contain gene
 sets with \_UP and \_DN suffixes. These
-are *C2.all*, *C2.CGP*, *C6.all*, and *C7.all*. Some gene sets,
+are *C2.all*, *C2.CGP*, *C6.all*, and *C7.all*. Some gene sets,
 including many in MSigDB, are derived from previous gene expression
 studies with up-regulated and down-regulated genes divided into separate
 gene sets denoted by an \_UP or \_DN suffix appended to otherwise
 identical set names. The ssGSEAProjection module can recombine these
 paired sets and calculate a combined enrichment score for each pair.
-See [ssGSEAProjection module
-documentation](http://www.broadinstitute.org/cancer/software/genepattern/modules/docs/ssGSEAProjection) for
+See [ssGSEAProjection module
+documentation](http://www.broadinstitute.org/cancer/software/genepattern/modules/docs/ssGSEAProjection) for
 more information.
 
 For gene set collections that utilize \_UP and \_DN suffixes, set
-ssGSEAProjection parameter *combine mode* to *combine.off*. Do not use
-the other two options, *combine.add *or *combine.replace*, as they
+ssGSEAProjection parameter *combine mode* to *combine.off*. Do not use
+the other two options, *combine.add* or *combine.replace*, as they
 create new combined gene sets that lack either suffix and which are not
 represented in the input gene set collection unless you will be
 providing ConstellationMap with a gene set collection that includes the
@@ -169,17 +169,17 @@ new combined gene sets. ConstellationMap requires that the gene sets
 specified in the input GCT file match a subset of the gene sets
 provided.
 
-  - *Combine.replace* replaces the original paired gene sets with a new
+  - *Combine.replace* replaces the original paired gene sets with a new
     combined gene set and thus reduces the number of gene sets in the
     output by half the paired sets.
-  - *Combine.add* mode keeps the original paired sets and independent
+  - *Combine.add* mode keeps the original paired sets and independent
     scores and adds the new combined set with combined score to the
     output GCT file, increasing the number of gene sets by the number of
     paired sets.
 
-**Note:** while the upstream GSEA, GSEAPreranked, and ssGSEAProjection
-modules all permit selection of multiple gene set files, **this is
-not supported by ConstellationMap at this time.**  As a workaround, you
+**Note:** while the upstream GSEA, GSEAPreranked, and ssGSEAProjection
+modules all permit selection of multiple gene set files, **this is
+not supported by ConstellationMap at this time.** As a workaround, you
 can combine the gene set files by hand and upload the single combined
 file.
 
@@ -197,21 +197,21 @@ association, we apply the sign of the Pearson correlation (Eq. 4).
 Next, the top N NMI-scoring gene sets are selected for projection onto
 the circular space. NMI scores are calculated pairwise across the N gene
 sets quantify the similarity between their enrichment profiles. These
-pairwise NMI scores are converted into dissimilarity scores, *d* = 1
-− *NMI*, which has been mathematically proven to be a true distance
-metric. An *N*-by-*N* distance matrix *D* is constructed containing
-these pairwise distances *d*.
+pairwise NMI scores are converted into dissimilarity scores, *d* = 1
+− *NMI*, which has been mathematically proven to be a true distance
+metric. An *N*-by-*N* distance matrix *D* is constructed containing
+these pairwise distances *d*.
 
 The circular Constellation Map plot is built using the multidimensional
 scaling projection R package SMACOF version 1.5–0. An angular distance
 matrix Δ is calculated by minimizing the objective function (Eq. 5),
-where *δ<sub>ij</sub>* is the angular distance and *d<sub>ij</sub>* is
-the original distance (stored in *D*) between gene sets *i* and *j*. The
+where *δ<sub>ij</sub>* is the angular distance and *d<sub>ij</sub>* is
+the original distance (stored in *D*) between gene sets *i* and *j*. The
 gene sets are plotted as points distributed about the origin. Angular
 distance between two gene sets is determined from Δ and is proportional
 to the similarity of the gene sets’ enrichment profiles. Radial distance
 (i.e., distance to the origin) indicates the gene set’s association with
-respect to the phenotype (1 – *NMI*).
+respect to the phenotype (1 – *NMI*).
 
 To provide context of gene overlap between sets, pairwise Jaccard
 indices are calculated across the gene sets. (The Jaccard index is equal
@@ -264,110 +264,114 @@ thickness of each edge is proportional to the Jaccard index.
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">input gct file <span style="color: red;">*</span></td>
-<td align="left"><p>This is a tab-delimited text file in <a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GCT:_Gene_Cluster_Text_file_format_.28.2A.gct.29">GCT format</a> containing gene set enrichment data outputted from an ssGSEAProjection (single sample gene set enrichment analysis projection) module job.</p>
-ConstellationMap assumes that the input GCT file is a gene set enrichment file outputted by an ssGSEAProjection module job. Rows should correspond to gene sets while columns should correspond to sample names. The gene sets specified in the GCT file must be a subset of the gene sets listed in the accompanying <em>gene sets database </em>or<em> gene sets file</em> (see below).</td>
+<td align="left">input gct file <span style="color: red;">*</span></td>
+<td align="left"><p>This is a tab-delimited text file in <a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GCT:_Gene_Cluster_Text_file_format_.28.2A.gct.29">GCT format</a> containing gene set enrichment data outputted from an ssGSEAProjection (single sample gene set enrichment analysis projection) module job.</p>
+ConstellationMap assumes that the input GCT file is a gene set enrichment file outputted by an ssGSEAProjection module job. Rows should correspond to gene sets while columns should correspond to sample names. The gene sets specified in the GCT file must be a subset of the gene sets listed in the accompanying <em>gene sets database </em>or<em> gene sets file</em> (see below).</td>
 </tr>
 <tr class="even">
-<td align="left">input cls file <span style="color: red;">*</span></td>
-<td align="left">A space-delimited text file in <a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#CLS:_Categorical_.28e.g_tumor_vs_normal.29_class_file_format_.28.2A.cls.29">CLS format</a> containing two-phenotype categorical labels (e.g., tumor vs. normal) or continuous phenotype labels (e.g., time series). For each sample in the corresponding expression dataset the CLS file assigns a label or numerical value for the phenotype.</td>
+<td align="left">input cls file <span style="color: red;">*</span></td>
+<td align="left">A space-delimited text file in <a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#CLS:_Categorical_.28e.g_tumor_vs_normal.29_class_file_format_.28.2A.cls.29">CLS format</a> containing two-phenotype categorical labels (e.g., tumor vs. normal) or continuous phenotype labels (e.g., time series). For each sample in the corresponding expression dataset the CLS file assigns a label or numerical value for the phenotype.</td>
 </tr>
 <tr class="odd">
-<td align="left">gene sets database </td>
-<td align="left"><p>This drop-down menu allows you to select gene sets from the <a href="http://www.msigdb.org/">Molecular Signatures Database (MSigDB)</a> on the GSEA website. This menu provides access to collections from MSigDB version 5.0.</p>
+<td align="left">gene sets database </td>
+<td align="left"><p>This drop-down menu allows you to select gene sets from the <a href="http://www.msigdb.org/">Molecular Signatures Database (MSigDB)</a> on the GSEA website. This menu provides access to collections from MSigDB version 5.0.</p>
 <p>If you want to use files from an earlier version of MSigDB, you will need to download that file from the archived releases on the website and specify it in the gene sets file parameter.</p>
-<p>You can also upload a gene set file in <a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29">GMT</a> or <a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMX:_Gene_MatriX_file_format_.28.2A.gmx.29">GMX</a> format. Provide your gene set file here if it is unavailable from the drop-down menu.</p>
-<p><strong>Note:</strong> while the upstream GSEA, GSEAPreranked, and ssGSEAProjection modules all permit selection of multiple gene set files, <strong>this is not supported by ConstellationMap at this time.</strong>  As a workaround, you can combine the gene set files by hand and upload the single combined file.</p></td>
+<p>You can also upload a gene set file in <a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29">GMT</a> or <a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMX:_Gene_MatriX_file_format_.28.2A.gmx.29">GMX</a> format. Provide your gene set file here if it is unavailable from the drop-down menu.</p>
+<p><strong>Note:</strong> while the upstream GSEA, GSEAPreranked, and ssGSEAProjection modules all permit selection of multiple gene set files, <strong>this is not supported by ConstellationMap at this time.</strong> As a workaround, you can combine the gene set files by hand and upload the single combined file.</p></td>
 </tr>
 <tr class="even">
-<td align="left">gene sets file </td>
-<td align="left">A gene set file in <a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29">GMT</a> or <a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMX:_Gene_MatriX_file_format_.28.2A.gmx.29">GMX</a> format. Provide your gene set file here if it is unavailable from the drop-down menu under <em>gene sets database</em>.</td>
+<td align="left">gene sets file </td>
+<td align="left">A gene set file in <a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29">GMT</a> or <a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMX:_Gene_MatriX_file_format_.28.2A.gmx.29">GMX</a> format. Provide your gene set file here if it is unavailable from the drop-down menu under <em>gene sets database</em>.</td>
 </tr>
 <tr class="odd">
-<td align="left">top n <span style="color: red;">*</span></td>
+<td align="left">top n <span style="color: red;">*</span></td>
 <td align="left">This is a positive integer indicating the number of top NMI-scoring gene sets to display in the final plot. This parameter must be greater than 2 but less than or equal to the total number of enriched gene sets.</td>
 </tr>
 <tr class="even">
-<td align="left">direction <span style="color: red;">*</span></td>
-<td align="left"><p>This drop-down menu allows you to select the direction of correlation, “positive” or “negative”, in which ConstellationMap will investigate association to the <em>target class</em>.</p>
-<p>If “positive” is chosen then gene sets that are more positively associated with the <em>target class </em>will be placed closer to the center in the resulting radial plot. If “negative” is chosen then gene sets that are more negatively associated with the <em>target class </em>will be placed closer to the center in the resulting radial plot.</p>
+<td align="left">direction <span style="color: red;">*</span></td>
+<td align="left"><p>This drop-down menu allows you to select the direction of correlation, “positive” or “negative”, in which ConstellationMap will investigate association to the <em>target class</em>.</p>
+<p>If “positive” is chosen then gene sets that are more positively associated with the <em>target class </em>will be placed closer to the center in the resulting radial plot. If “negative” is chosen then gene sets that are more negatively associated with the <em>target class </em>will be placed closer to the center in the resulting radial plot.</p>
 Default: “positive”</td>
 </tr>
 <tr class="odd">
-<td align="left">image format <span style="color: red;">*</span></td>
+<td align="left">image format <span style="color: red;">*</span></td>
 <td align="left"><p>This drop-down menu allows you to select an image format for the outputted static plot and heat map, either PNG (raster graphics) or PDF (vector graphics).</p>
 Default: “PNG”</td>
 </tr>
 <tr class="even">
-<td align="left">jaccard threshold <span style="color: red;">*</span></td>
+<td align="left">jaccard threshold <span style="color: red;">*</span></td>
 <td align="left"><p>This is a number between 0 and 1 indicating the Jaccard Index threshold above which connecting edges between gene sets will be drawn in the resulting plot.</p>
 <p>ConstellationMap measures the overlap between all gene set pairs using a Jaccard Index metric. The Jaccard Index is equal to the number of genes in the intersect of the two sets divided by the number of genes in their union.</p>
 <p>Edges are drawn between gene set pairs if their Jaccard Index is greater than the threshold parameter given here. This affects both the static and interactive plots.</p>
 Default: 0.1</td>
 </tr>
 <tr class="odd">
-<td align="left">target class </td>
+<td align="left">target class </td>
 <td align="left"><p>This is a phenotype label, indicating the phenotypic category against which ConstellationMap will measure the association of various gene sets based on their enrichment. In the outputted visualization, target class will be plotted in the center of the radial plot.</p>
-This parameter must match one of the two phenotype labels specified in the second line of the <em>input cls file</em>. If this parameter is left blank, ConstellationMap will default to the first listed phenotype label in the <em>input cls file</em>.</td>
+This parameter must match one of the two phenotype labels specified in the second line of the <em>input cls file</em>. If this parameter is left blank, ConstellationMap will default to the first listed phenotype label in the <em>input cls file</em>.</td>
 </tr>
 </tbody>
 </table>
 
-\* - required
+\* - required
 
 ## Input Files
 
 1.  input gct file  
-    Gene set enrichment data file in [GCT
-    format](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GCT:_Gene_Cluster_Text_file_format_.28.2A.gct.29). Each
+    Gene set enrichment data file in [GCT
+    format](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GCT:_Gene_Cluster_Text_file_format_.28.2A.gct.29). Each
     row of the GCT file matrix should represent a gene set while each
     column should represent a sample. Each matrix element should contain
     an enrichment score indicating the degree to which the given gene
     set’s members are coordinately up- or down-regulated in the given
-    sample. Output from the [ssGSEAProjection
-    module](https://www.broadinstitute.org/cancer/software/genepattern/modules/docs/ssGSEAProjection/) can
+    sample. Output from the [ssGSEAProjection
+    module](https://www.broadinstitute.org/cancer/software/genepattern/modules/docs/ssGSEAProjection/) can
     be directly input into ConstellationMap.
 2.  input cls file  
-    Class designation file in [CLS
+    Class designation file in [CLS
     format](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#CLS:_Categorical_.28e.g_tumor_vs_normal.29_class_file_format_.28.2A.cls.29).
 3.  gene sets file or database  
     Gene sets file
-    in [GMT](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29) or [GMX](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMX:_Gene_MatriX_file_format_.28.2A.gmx.29) format
+    in [GMT](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29) or [GMX](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMX:_Gene_MatriX_file_format_.28.2A.gmx.29) format
     provided by the user or drawn
-    from [MSigDB](http://www.msigdb.org/) by selection from the
+    from [MSigDB](http://www.msigdb.org/) by selection from the
     pull-down menu.
 
 ## Output Files
 
-1.  Visualizer.html  
-    This is an interactive in-browser plot powered by JavaScript. Open
-    this link in a new tab to view the ConstellationMap radial plot.
-    This visualizer allows users to quickly identify and annotate
-    overlapping genes and interrogate gene set clusters. Metadata such
-    as Jaccard indices and coordinates are quickly made available.
+1. Visualizer.html  
     
-    When saving a ConstellationMap job to the GenePattern file system,
-    users should ensure that Visualizer.html resides in the same folder
-    as the two accompanying ODF files in order to continue using the
-    visualizer.
+This is an interactive in-browser plot powered by JavaScript. Open
+this link in a new tab to view the ConstellationMap radial plot.
+This visualizer allows users to quickly identify and annotate
+overlapping genes and interrogate gene set clusters. Metadata such
+as Jaccard indices and coordinates are quickly made available.
     
-    This is the **preferred** method for visualizing ConstellationMap
-    results.
+When saving a ConstellationMap job to the GenePattern file system,
+users should ensure that Visualizer.html resides in the same folder
+as the two accompanying ODF files in order to continue using the
+visualizer.
 
-2.  \<input.gct.file\>.\<gene.sets.file\>.\<target.class\>.HEATMAP.png *or* \<input.gct.file\>.\<gene.sets.file\>.\<target.class\>.HEATMAP.pdf  
-    This image is a heat map of the top n NMI-scoring gene sets in
-    either PNG or PDF format, depending on the chosen *image
-    format* parameter.  
-    Rows denote gene sets ranked by NMI score while columns denote
-    samples. Cell colors from red (positive) to blue (negative) indicate
-    ssGSEA enrichment scores. NMI, AUC, AUC p-values, t-test scores, and
-    t-test score p-values for each gene set appear to the right. The
-    horizontal yellow and purple bar at the top indicate the two
-    different phenotypic classes.
+This is the **preferred** method for visualizing ConstellationMap
+results.
 
-3.  \<input.gct.file\>.\<gene.sets.file\>.\<target.class\>.REPORT.txt  
-    This is a tab-delimited text file containing calculated statistical
-    metrics for the *top n *NMI-scoring gene sets.
+3. \<input.gct.file\>.\<gene.sets.file\>.\<target.class\>.HEATMAP.png *or* \<input.gct.file\>.\<gene.sets.file\>.\<target.class\>.HEATMAP.pdf  
+    
+This image is a heat map of the top n NMI-scoring gene sets in
+either PNG or PDF format, depending on the chosen *image
+format* parameter.  
+
+Rows denote gene sets ranked by NMI score while columns denote
+samples. Cell colors from red (positive) to blue (negative) indicate
+ssGSEA enrichment scores. NMI, AUC, AUC p-values, t-test scores, and
+t-test score p-values for each gene set appear to the right. The
+horizontal yellow and purple bar at the top indicate the two
+different phenotypic classes.
+
+3. \<input.gct.file\>.\<gene.sets.file\>.\<target.class\>.REPORT.txt  
+    
+This is a tab-delimited text file containing calculated statistical
+metrics for the *top n* NMI-scoring gene sets.
 
 <!-- end list -->
 
@@ -380,17 +384,22 @@ This parameter must match one of the two phenotype labels specified in the secon
 
 <!-- end list -->
 
-4.  \<input.gct.file\>.\<gene.sets.file\>.\<target.class\>.CONSTELLATION\_MAP.png *or *\<input.gct.file\>.\<gene.sets.file\>.\<target.class\>.CONSTELLATION\_MAP.pdf  
-    This is a static image of the ConstellationMap radial plot in either
-    PNG or PDF format, depending on the chosen *image format *parameter.
-5.  ConstellationMap.plot.data.nodes.odf  
-    This is a tab-delimited text file in ODF format that contains data
-    on node coordinates as well as metadata (e.g., gene set membership,
-    filenames) for plotting by *Visualizer.html*.
-6.  ConstellationMap.plot.data.edges.odf  
-    This is a tab-delimited text file in ODF format that contains data
-    on edge locations as well as metadata (e.g., Jaccard Indices,
-    filenames) for plotting by *Visualizer.html*.
+4. \<input.gct.file\>.\<gene.sets.file\>.\<target.class\>.CONSTELLATION\_MAP.png *or* \<input.gct.file\>.\<gene.sets.file\>.\<target.class\>.CONSTELLATION\_MAP.pdf  
+    
+This is a static image of the ConstellationMap radial plot in either
+PNG or PDF format, depending on the chosen *image format* parameter.
+
+5. ConstellationMap.plot.data.nodes.odf  
+
+This is a tab-delimited text file in ODF format that contains data
+on node coordinates as well as metadata (e.g., gene set membership,
+filenames) for plotting by *Visualizer.html*.
+
+6. ConstellationMap.plot.data.edges.odf  
+
+This is a tab-delimited text file in ODF format that contains data
+on edge locations as well as metadata (e.g., Jaccard Indices,
+filenames) for plotting by *Visualizer.html*.
 
 ## Requirements
 
