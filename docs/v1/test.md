@@ -456,6 +456,11 @@ R
 ## Version Comments
 
 <table>
+<colgroup>
+<col width="5%" />
+<col width="20%" />
+<col width="75%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">Version</th>
