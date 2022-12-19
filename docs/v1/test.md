@@ -251,69 +251,35 @@ thickness of each edge is proportional to the Jaccard index.
 
 ## Parameters
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Name</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">input gct file <span style="color: red;">*</span></td>
-<td align="left"><p>This is a tab-delimited text file in <a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GCT:_Gene_Cluster_Text_file_format_.28.2A.gct.29">GCT format</a> containing gene set enrichment data outputted from an ssGSEAProjection (single sample gene set enrichment analysis projection) module job.</p>
-ConstellationMap assumes that the input GCT file is a gene set enrichment file outputted by an ssGSEAProjection module job. Rows should correspond to gene sets while columns should correspond to sample names. The gene sets specified in the GCT file must be a subset of the gene sets listed in the accompanying <em>gene sets database </em>or<em> gene sets file</em> (see below).</td>
-</tr>
-<tr class="even">
-<td align="left">input cls file <span style="color: red;">*</span></td>
-<td align="left">A space-delimited text file in <a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#CLS:_Categorical_.28e.g_tumor_vs_normal.29_class_file_format_.28.2A.cls.29">CLS format</a> containing two-phenotype categorical labels (e.g., tumor vs. normal) or continuous phenotype labels (e.g., time series). For each sample in the corresponding expression dataset the CLS file assigns a label or numerical value for the phenotype.</td>
-</tr>
-<tr class="odd">
-<td align="left">gene sets database </td>
-<td align="left"><p>This drop-down menu allows you to select gene sets from the <a href="http://www.msigdb.org/">Molecular Signatures Database (MSigDB)</a> on the GSEA website. This menu provides access to collections from MSigDB version 5.0.</p>
-<p>If you want to use files from an earlier version of MSigDB, you will need to download that file from the archived releases on the website and specify it in the gene sets file parameter.</p>
-<p>You can also upload a gene set file in <a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29">GMT</a> or <a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMX:_Gene_MatriX_file_format_.28.2A.gmx.29">GMX</a> format. Provide your gene set file here if it is unavailable from the drop-down menu.</p>
-<p><strong>Note:</strong> while the upstream GSEA, GSEAPreranked, and ssGSEAProjection modules all permit selection of multiple gene set files, <strong>this is not supported by ConstellationMap at this time.</strong> As a workaround, you can combine the gene set files by hand and upload the single combined file.</p></td>
-</tr>
-<tr class="even">
-<td align="left">gene sets file </td>
-<td align="left">A gene set file in <a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29">GMT</a> or <a href="https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMX:_Gene_MatriX_file_format_.28.2A.gmx.29">GMX</a> format. Provide your gene set file here if it is unavailable from the drop-down menu under <em>gene sets database</em>.</td>
-</tr>
-<tr class="odd">
-<td align="left">top n <span style="color: red;">*</span></td>
-<td align="left">This is a positive integer indicating the number of top NMI-scoring gene sets to display in the final plot. This parameter must be greater than 2 but less than or equal to the total number of enriched gene sets.</td>
-</tr>
-<tr class="even">
-<td align="left">direction <span style="color: red;">*</span></td>
-<td align="left"><p>This drop-down menu allows you to select the direction of correlation, “positive” or “negative”, in which ConstellationMap will investigate association to the <em>target class</em>.</p>
-<p>If “positive” is chosen then gene sets that are more positively associated with the <em>target class </em>will be placed closer to the center in the resulting radial plot. If “negative” is chosen then gene sets that are more negatively associated with the <em>target class </em>will be placed closer to the center in the resulting radial plot.</p>
-Default: “positive”</td>
-</tr>
-<tr class="odd">
-<td align="left">image format <span style="color: red;">*</span></td>
-<td align="left"><p>This drop-down menu allows you to select an image format for the outputted static plot and heat map, either PNG (raster graphics) or PDF (vector graphics).</p>
-Default: “PNG”</td>
-</tr>
-<tr class="even">
-<td align="left">jaccard threshold <span style="color: red;">*</span></td>
-<td align="left"><p>This is a number between 0 and 1 indicating the Jaccard Index threshold above which connecting edges between gene sets will be drawn in the resulting plot.</p>
-<p>ConstellationMap measures the overlap between all gene set pairs using a Jaccard Index metric. The Jaccard Index is equal to the number of genes in the intersect of the two sets divided by the number of genes in their union.</p>
-<p>Edges are drawn between gene set pairs if their Jaccard Index is greater than the threshold parameter given here. This affects both the static and interactive plots.</p>
-Default: 0.1</td>
-</tr>
-<tr class="odd">
-<td align="left">target class </td>
-<td align="left"><p>This is a phenotype label, indicating the phenotypic category against which ConstellationMap will measure the association of various gene sets based on their enrichment. In the outputted visualization, target class will be plotted in the center of the radial plot.</p>
-This parameter must match one of the two phenotype labels specified in the second line of the <em>input cls file</em>. If this parameter is left blank, ConstellationMap will default to the first listed phenotype label in the <em>input cls file</em>.</td>
-</tr>
-</tbody>
-</table>
+- **input gct file**<span style="color: red;">*</span>
+    - This is a tab-delimited text file in [GCT format](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GCT:_Gene_Cluster_Text_file_format_.28.2A.gct.29) containing gene set enrichment data outputted from an ssGSEAProjection (single sample gene set enrichment analysis projection) module job. ConstellationMap assumes that the input GCT file is a gene set enrichment file outputted by an ssGSEAProjection module job. Rows should correspond to gene sets while columns should correspond to sample names. The gene sets specified in the GCT file must be a subset of the gene sets listed in the accompanying *gene sets database* or *gene sets file* (see below).
+- **input cls file**<span style="color: red;">*</span>
+    - A space-delimited text file in [CLS format](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#CLS:_Categorical_.28e.g_tumor_vs_normal.29_class_file_format_.28.2A.cls.29) containing two-phenotype categorical labels (e.g., tumor vs. normal) or continuous phenotype labels (e.g., time series). For each sample in the corresponding expression dataset the CLS file assigns a label or numerical value for the phenotype.
+- **gene sets database**
+    - This drop-down menu allows you to select gene sets from the [Molecular Signatures Database (MSigDB)](http://www.msigdb.org/) on the GSEA website. This menu provides access to collections from MSigDB version 5.0. 
+      - If you want to use files from an earlier version of MSigDB, you will need to download that file from the archived releases on the website and specify it in the gene sets file parameter. 
+      - You can also upload a gene set file in [GMT](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29) or [GMX](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMX:_Gene_MatriX_file_format_.28.2A.gmx.29) format. Provide your gene set file here if it is unavailable from the drop-down menu.
+      - **Note:** While the upstream GSEA, GSEAPreranked, and ssGSEAProjection modules all permit selection of multiple gene set files, **this is not supported by ConstellationMap at this time.** As a workaround, you can combine the gene set files by hand and upload the single combined file.
+- **gene sets file**
+    - A gene set file in [GMT](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29) or [GMX](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMX:_Gene_MatriX_file_format_.28.2A.gmx.29) format. Provide your gene set file here if it is unavailable from the drop-down menu under *gene sets database*.
+- **top n**<span style="color: red;">*</span>
+    - This is a positive integer indicating the number of top NMI-scoring gene sets to display in the final plot. This parameter must be greater than 2 but less than or equal to the total number of enriched gene sets.
+- **direction**<span style="color: red;">*</span>
+    - This drop-down menu allows you to select the direction of correlation, “positive” or “negative”, in which ConstellationMap will investigate association to the *target class*. 
+      - If “positive” is chosen then gene sets that are more positively associated with the *target class* will be placed closer to the center in the resulting radial plot. If “negative” is chosen then gene sets that are more negatively associated with the *target class* will be placed closer to the center in the resulting radial plot. 
+      - Default: “positive”
+- **image format**<span style="color: red;">*</span>
+    - This drop-down menu allows you to select an image format for the outputted static plot and heat map, either PNG (raster graphics) or PDF (vector graphics). 
+    - Default: “PNG”
+- **jaccard threshold** <span style="color: red;">*</span>
+    - This is a number between 0 and 1 indicating the Jaccard Index threshold above which connecting edges between gene sets will be drawn in the resulting plot. 
+    - ConstellationMap measures the overlap between all gene set pairs using a Jaccard Index metric. The Jaccard Index is equal to the number of genes in the intersect of the two sets divided by the number of genes in their union. 
+    - Edges are drawn between gene set pairs if their Jaccard Index is greater than the threshold parameter given here. This affects both the static and interactive plots. 
+    - Default: 0.1
+- **target class**
+    - This is a phenotype label, indicating the phenotypic category against which ConstellationMap will measure the association of various gene sets based on their enrichment. In the outputted visualization, target class will be plotted in the center of the radial plot. This parameter must match one of the two phenotype labels specified in the second line of the *input cls file*. If this parameter is left blank, ConstellationMap will default to the first listed phenotype label in the *input cls file*.
 
-\* - required
+<span style="color: red;">*</span> = required
 
 ## Input Files
 
@@ -405,142 +371,43 @@ filenames) for plotting by *Visualizer.html*.
 
 ### Supported Browsers
 
-<table>
-<tbody>
-<tr class="odd">
-<td align="left"><strong>Mozilla Firefox:</strong></td>
-<td align="left">v4–46</td>
-</tr>
-<tr class="even">
-<td align="left"><strong>Google Chrome:</strong></td>
-<td align="left">v13–41</td>
-</tr>
-<tr class="odd">
-<td align="left"><strong>Microsoft IE:</strong></td>
-<td align="left">v10–11</td>
-</tr>
-</tbody>
-</table>
+- **Mozilla Firefox:** v4–46
+- **Google Chrome:** v13–41
+- **Microsoft IE:** v10–11
 
 *The module developers highly suggest using the latest version of
 Firefox or Chrome. JavaScript must be enabled.*
 
 ### Platform Dependencies
 
-<table>
-<tbody>
-<tr class="odd">
-<td align="left"><strong>Task Type:</strong></td>
-<td align="left">Statistical Methods</td>
-</tr>
-<tr class="even">
-<td align="left"><strong>CPU Type:</strong></td>
-<td align="left">any</td>
-</tr>
-<tr class="odd">
-<td align="left"><strong>OS:</strong></td>
-<td align="left">any</td>
-</tr>
-<tr class="even">
-<td align="left"><strong>Language:</strong></td>
-<td align="left">R (v3.0)</td>
-</tr>
-</tbody>
-</table>
+- **Task Type:** Statistical Methods
+- **CPU Type:** any
+- **OS:** any
+- **Language:** R (v3.0)
 
 ## Platform Dependencies
 
-**Task Type:**  
-Statistical Methods
-
-**CPU Type:**  
-any
-
-**Operating System:**  
-any
-
-**Language:**  
-R
+- **Task Type:** Statistical Methods
+- **CPU Type:** any
+- **Operating System:** any
+- **Language:** R
 
 ## Version Comments
 
-<table>
-<colgroup>
-<col width="5%" />
-<col width="20%" />
-<col width="75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Version</th>
-<th align="left">Release Date</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">1.4.20</td>
-<td align="left">2022-10-2</td>
-<td align="left">Updated to Human MSigDB v2022.1.Hs and Mouse MSigDB 2022.1.Mm.</td>
-</tr>
-<tr class="even">
-<td align="left">1.4.19</td>
-<td align="left">2022-9-15</td>
-<td align="left">Updated to Human MSigDB v2022.1.Hs. Direct support for Mouse MSigDB 2022.1.Mm is not yet available</td>
-</tr>
-<tr class="odd">
-<td align="left">1.4.18</td>
-<td align="left">2022-1-19</td>
-<td align="left">Updated to MSigDB v7.5.1.</td>
-</tr>
-<tr class="even">
-<td align="left">1.4.17</td>
-<td align="left">2022-1-12</td>
-<td align="left">Updated to MSigDB v7.5.</td>
-</tr>
-<tr class="odd">
-<td align="left">1.4.16</td>
-<td align="left">2021-4-22</td>
-<td align="left">Fixed minor typo</td>
-</tr>
-<tr class="even">
-<td align="left">1.4.15</td>
-<td align="left">2021-4-9</td>
-<td align="left">More flexible CLS parsing</td>
-</tr>
-<tr class="even">
-<td align="left">1.4.14</td>
-<td align="left">2021-4-2</td>
-<td align="left">Updated for MSigDB v7.4</td>
-</tr>
-<tr class="odd">
-<td align="left">1.4.13</td>
-<td align="left">2021-3-22</td>
-<td align="left">Updated for MSigDB v7.3</td>
-</tr>
-<tr class="even">
-<td align="left">1.4.12</td>
-<td align="left">2020-9-23</td>
-<td align="left">Updated for MSigDB v7.2</td>
-</tr>
-<tr class="odd">
-<td align="left">1.4.11</td>
-<td align="left">2020-4-2</td>
-<td align="left">Updated for MSigDB v7.1</td>
-</tr>
-<tr class="even">
-<td align="left">1.4.10</td>
-<td align="left">2019-10-16</td>
-<td align="left">Updated for MSigDB v7.0</td>
-</tr>
-<tr class="odd">
-<td align="left">1.4.9</td>
-<td align="left">2018-07-17</td>
-<td align="left">Beta release for the MSigDB v6.2 update</td>
-</tr>
-</tbody>
-</table>
+- **1.4.20** (2022-10-2): Updated to Human MSigDB v2022.1.Hs and Mouse MSigDB 2022.1.Mm.
+- **1.4.19** (2022-9-15): Updated to Human MSigDB v2022.1.Hs. Direct support for Mouse MSigDB 2022.1.Mm is not yet available.
+- **1.4.18** (2022-1-19): Updated to MSigDB v7.5.1.
+- **1.4.17** (2022-1-12): Updated to MSigDB v7.5. 
+- **1.4.16** (2021-4-22): Fixed minor typo. 
+- **1.4.15** (2021-4-9): More flexible CLS parsing.
+- **1.4.14** (2021-4-2): Updated for MSigDB v7.4.
+- **1.4.13** (2021-3-22): Updated for MSigDB v7.3. 
+- **1.4.12** (2020-9-23): Updated for MSigDB v7.2 
+- **1.4.11** (2020-4-2): Updated for MSigDB v7.1.  
+- **1.4.10** (2019-10-16): Updated for MSigDB v7.0.  
+- **1.4.9** (2018-07-17): Beta release for the MSigDB v6.2 update.  
 
-[![Broad logo](./broad-logo.png)](http://www.broadinstitute.org/)©2021
+[![Broad logo](./broad-logo.png)](http://www.broadinstitute.org/) ©2021
+
 [Broad Institute of MIT & Harvard](http://www.broadinstitute.org/)
 
