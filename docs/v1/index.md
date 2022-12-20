@@ -407,7 +407,7 @@ Firefox or Chrome. JavaScript must be enabled.*
 - **1.4.10** (2019-10-16): Updated for MSigDB v7.0.  
 - **1.4.9** (2018-07-17): Beta release for the MSigDB v6.2 update.  
 
-[![Broad logo](./broad-logo.png)](http://www.broadinstitute.org/) ©2021
+[![Broad logo](./broad-logo.png)](http://www.broadinstitute.org/) ©2022
 
 [Broad Institute of MIT & Harvard](http://www.broadinstitute.org/)
 
