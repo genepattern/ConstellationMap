@@ -4,7 +4,7 @@
 # Parameters: 
 #    input.gct.file = Diabetes_collapsed_symbols.PROJ.gct   https://gpbroad.broadinstitute.org/gp/jobResults/158921/Diabetes_collapsed_symbols.PROJ.gct
 #    input.cls.file = Diabetes.cls   https://gpbroad.broadinstitute.org/gp/users/eby/tmp/run1869603784104291954.tmp/input.cls.file/1/Diabetes.cls
-#    gene.sets.file = h.all.v6.1.symbols.gmt [Hallmarks]   ftp://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/h.all.v6.1.symbols.gmt
+#    gene.sets.file = h.all.v6.1.symbols.gmt [Hallmarks]   https://datasets.genepattern.org/gpftp/module_support_files/msigdb/gmt/h.all.v6.1.symbols.gmt
 #    top.n = 10
 #    direction = positive
 #    image.format = PNG
