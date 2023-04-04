@@ -8,7 +8,7 @@ params:
     input.gct.file: "Diabetes_collapsed_symbols.PROJ.gct"
     input.cls.file: "Diabetes.cls"
     # h.all.v6.1.symbols.gmt [Hallmarks]
-    gene.sets.file: "ftp://gpftp.broadinstitute.org/module_support_files/msigdb/gmt/h.all.v6.1.symbols.gmt"
+    gene.sets.file: "https://datasets.genepattern.org/gpftp/module_support_files/msigdb/gmt/h.all.v6.1.symbols.gmt"
     top.n: "10"
     direction: "positive"
     image.format: "PDF"
